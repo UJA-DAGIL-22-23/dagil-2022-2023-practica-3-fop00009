@@ -446,4 +446,6 @@ CAPTURA DE PANTALLA DEL HOME DE FAUNA:
 CAPTURA DE PANTALLA DE LA BASE DE DATOS EN FAUNA:
 ![image](https://user-images.githubusercontent.com/124682676/225133968-d4d672fa-2363-436f-bd32-e0094b487032.png)
 
+CAPTURA DE PANTALLA DE LA COLECCIÓN EN FAUNA:
+![image](https://user-images.githubusercontent.com/124682676/225134236-c7e3a230-160e-4f15-8d4d-5314fe3c6e32.png)
 
