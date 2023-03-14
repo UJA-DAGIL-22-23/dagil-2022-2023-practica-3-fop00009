@@ -436,3 +436,16 @@ https://github.com/UJA-Desarrollo-Agil/descripcion-proyecto-microservicios-perso
 El código en ese repositorio muestra una aplicación similar, pero con mucha más funcionalidad que esta plantilla: acceso a base de datos remota, listado de documentos recuperados de la BBDD, peticiones entre distintos microservicios, etc.
 
 Además, incluye documentación sobre dicho código y un vídeo descriptivo de cómo se ha realizado y cómo funciona la aplicación de ejemplo.
+
+URL DEL TABLERO TRELLO:
+https://trello.com/b/5pFAAS5L/pr%C3%A1ctica-3-fop00009
+
+CAPTURA DE PANTALLA DEL HOME DE FAUNA:
+![image](https://user-images.githubusercontent.com/124682676/225133690-f38d61cb-3cff-4e56-b329-6b08120ddc7d.png)
+
+CAPTURA DE PANTALLA DE LA BASE DE DATOS EN FAUNA:
+![image](https://user-images.githubusercontent.com/124682676/225133968-d4d672fa-2363-436f-bd32-e0094b487032.png)
+
+CAPTURA DE PANTALLA DE LA COLECCIÓN EN FAUNA:
+![image](https://user-images.githubusercontent.com/124682676/225134236-c7e3a230-160e-4f15-8d4d-5314fe3c6e32.png)
+
