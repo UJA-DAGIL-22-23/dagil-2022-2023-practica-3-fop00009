@@ -439,3 +439,7 @@ Además, incluye documentación sobre dicho código y un vídeo descriptivo de c
 
 URL DEL TABLERO TRELLO:
 https://trello.com/b/5pFAAS5L/pr%C3%A1ctica-3-fop00009
+
+CAPTURA DE PANTALLA DEL HOME DE FAUNA
+![image](https://user-images.githubusercontent.com/124682676/225133690-f38d61cb-3cff-4e56-b329-6b08120ddc7d.png)
+
