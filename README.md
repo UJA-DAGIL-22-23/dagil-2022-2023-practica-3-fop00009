@@ -11,6 +11,7 @@ CAPTURA DE PANTALLA DE LA COLECCIÓN EN FAUNA:
 ![image](https://user-images.githubusercontent.com/124682676/225134236-c7e3a230-160e-4f15-8d4d-5314fe3c6e32.png)
 
 DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
+```
 [
    {
      "ID": 1000,
@@ -167,3 +168,4 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
      "numPodiosConseguidos": 0
    }
 ]
+```
