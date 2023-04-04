@@ -34,6 +34,17 @@ router.get("/acercade", async (req, res) => {
 });
 
 
+/**
+ * Ruta Listar nombres personas
+ */
+router.get("/listarnPersonas", async(req,res)=>{
+    try{
+        await callbacks.listanPersonas(req,res)
+    }catch (error){
+        console.log(error);
+    }
+})
+
 
 /**
  * Test de conexión a la BBDD

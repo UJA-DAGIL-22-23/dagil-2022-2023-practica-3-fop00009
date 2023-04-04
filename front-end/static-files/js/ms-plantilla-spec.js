@@ -123,6 +123,61 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
         })
 })
 
+describe("Plantilla.cabeceraTablaNombres",function(){
+    it("Tendría que devolver las etiquetas HTML para la cabecera de la tabla de listar personas.",
+        function(){
+            expect(Plantilla.cabeceraTablaNombres()).toBe('<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th></thead><tbody>');
+        }
+    );
+});
+
+describe("Plantilla.Pietabla", function () {
+    it("Tendría que devolver las etiquetas HTML para el pie de tabla",
+        function () {
+            expect(Plantilla.pieTabla()).toBe("</tbody></table>");
+        });
+});
+
+describe("Plantilla.cuerpoListarPersonas",function(){
+    it("debería devolver una fila de tabla HTML con los datos de la persona proporcionada",
+    function(){
+        const personaPrueba = {ID: 1, nombre: 'Juan', apellidos: 'Pérez'};
+        const fila = Plantilla.cuerpoListarPersonas({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td>Juan</td><td>Pérez</td></tr>');
+    });
+
+    it("debería manejar correctamente los valores nulos",function () {
+        const personaPrueba = { ID: null, nombre: 'Juan', apellidos: 'González' };
+        const fila = Plantilla.cuerpoListarPersonas({ data: personaPrueba });
+        expect(fila).toBe('<tr><td></td><td>Juan</td><td>González</td></tr>');
+      });
+});
+
+describe("Plantilla.imprime", function(){
+    it("Deberia trabajar correctamente con vectores vacios", function(){
+        const vector = [];
+        const mensajeEsperado = Plantilla.cabeceraTablaNombres() + Plantilla.pieTabla();
+        const mensaje = Plantilla.imprime(vector);
+        expect(mensaje).toBe(mensajeEsperado); 
+    });
+    
+    it('debería devolver un mensaje con una tabla HTML que muestre los datos de las personas proporcionadas', function() {
+        const vector = [
+          { ID: 1, nombre: 'Juan', apellidos: 'Pérez' },
+          { ID: 2, nombre: 'Ana', apellidos: 'García' },
+          { ID: 3, nombre: 'Pedro', apellidos: 'López' }
+        ];
+        const mensajeEsperado = '<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th></thead><tbody>' + 
+          '<tr><td>1</td><td>Juan</td><td>Pérez</td></tr>' +
+          '<tr><td>2</td><td>Ana</td><td>García</td></tr>' +
+          '<tr><td>3</td><td>Pedro</td><td>López</td></tr>' +
+          "</tbody></table>"
+        const mensaje = Plantilla.cabeceraTablaNombres() + Plantilla.cuerpoListarPersonas({ data: vector[0] }) + 
+        Plantilla.cuerpoListarPersonas({ data: vector[1] })+ Plantilla.cuerpoListarPersonas({ data: vector[2] })+Plantilla.pieTabla();
+        expect(mensaje).toBe(mensajeEsperado);
+      }); 
+});
+
 
 /*
 IMPORTANTE

@@ -18,6 +18,19 @@ Plantilla.datosDescargadosNulos = {
     fecha: ""
 }
 
+Plantilla.plantillaTags = {
+    "ID": "### ID ###",
+    "nombre": "### nombre ###",
+    "apellidos": "### apellidos ###",
+    "altura": "### altura ###",
+    "dia": "### dia ###",
+    "mes": "### mes ###",
+    "año": "### año ###",
+    "lugar": "### lugar ###",
+    "participacionesJJOO": "### participacionesJJOO ###",
+    "numPodiosConseguidos": "### numPodiosConseguidos ###",
+}
+
 
 /**
  * Función que descarga la info MS Plantilla al llamar a una de sus rutas
@@ -105,6 +118,79 @@ Plantilla.procesarHome = function () {
  */
 Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
+}
+
+/**
+ * Función principal para responder al evento de elegir la opción "Listar nombres personas"
+ */
+Plantilla.procesarListarNombres = function () {
+    this.recupera(this.imprime);
+}
+
+
+Plantilla.imprime = function (vector) {
+    
+   
+    let mensaje = "";
+    mensaje += Plantilla.cabeceraTablaNombres();
+    vector.forEach(e => mensaje+= Plantilla.cuerpoListarPersonas(e))
+    mensaje += Plantilla.pieTabla();
+    
+    Frontend.Article.actualizar("Listado de personas", mensaje);
+    return mensaje
+}
+
+Plantilla.cabeceraTablaNombres = function () {
+    return `<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th></thead><tbody>`;
+}
+
+Plantilla.cuerpoListarPersonas = function (p) {
+    const d = p.data
+    
+    if(d.ID == null){
+        return `<tr><td></td><td>${d.nombre}</td><td>${d.apellidos}</td></tr>`;
+    }
+    if(d.apellidos == null){
+        return `<tr><td>${d.ID}</td><td>${d.nombre}</td><td></td></tr>`;
+    }
+    if(d.nombre == null){
+        return `<tr><td>${d.ID}</td><td></td><td>${d.apellidos}</td></tr>`;
+    }
+    if(d.ID == null && d.apellidos == null){
+        return `<tr><td></td><td>${d.nombre}</td><td></td></tr>`;
+
+    }
+    if(d.ID == null && d.nombre == null){
+        return `<tr><td></td><td></td><td>${d.apellidos}</td></tr>`;
+    }
+    if(d.nombre == null && d.apellidos == null){
+        return `<tr><td>${d.ID}</td><td></td><td></td></tr>`;
+    }
+    
+    return `<tr><td>${d.ID}</td><td>${d.nombre}</td><td>${d.apellidos}</td></tr>`;
+}
+
+Plantilla.pieTabla = function () {
+    return "</tbody></table>";
+}
+
+
+Plantilla.recupera = async function (callBackFn) {
+
+    let respuesta = null
+    try{
+        const url = Frontend.API_GATEWAY + "/plantilla/listarnPersonas"
+        respuesta = await fetch(url)
+    }catch (error){
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+
+    let vectorPersonas = null
+    if(respuesta){
+        vectorPersonas = await respuesta.json()
+        callBackFn(vectorPersonas.data)
+    }
 }
 
 
