@@ -130,7 +130,6 @@ Plantilla.procesarListarNombres = function () {
 
 Plantilla.imprime = function (vector) {
     
-   
     let mensaje = "";
     mensaje += Plantilla.cabeceraTablaNombres();
     vector.forEach(e => mensaje+= Plantilla.cuerpoListarPersonas(e))
@@ -147,14 +146,9 @@ Plantilla.cabeceraTablaNombres = function () {
 Plantilla.cuerpoListarPersonas = function (p) {
     const d = p.data
     
-    if(d.ID == null){
-        return `<tr><td></td><td>${d.nombre}</td><td>${d.apellidos}</td></tr>`;
-    }
-    if(d.apellidos == null){
-        return `<tr><td>${d.ID}</td><td>${d.nombre}</td><td></td></tr>`;
-    }
-    if(d.nombre == null){
-        return `<tr><td>${d.ID}</td><td></td><td>${d.apellidos}</td></tr>`;
+
+    if(d.ID == null && d.apellidos == null && d.nombre == null){
+        return `<tr><td></td><td>${d.nombre}</td><td></td></tr>`
     }
     if(d.ID == null && d.apellidos == null){
         return `<tr><td></td><td>${d.nombre}</td><td></td></tr>`;
@@ -166,6 +160,15 @@ Plantilla.cuerpoListarPersonas = function (p) {
     if(d.nombre == null && d.apellidos == null){
         return `<tr><td>${d.ID}</td><td></td><td></td></tr>`;
     }
+    if(d.ID == null){
+        return `<tr><td></td><td>${d.nombre}</td><td>${d.apellidos}</td></tr>`;
+    }
+    if(d.apellidos == null){
+        return `<tr><td>${d.ID}</td><td>${d.nombre}</td><td></td></tr>`;
+    }
+    if(d.nombre == null){
+        return `<tr><td>${d.ID}</td><td></td><td>${d.apellidos}</td></tr>`;
+    }
     
     return `<tr><td>${d.ID}</td><td>${d.nombre}</td><td>${d.apellidos}</td></tr>`;
 }
@@ -176,7 +179,6 @@ Plantilla.pieTabla = function () {
 
 
 Plantilla.recupera = async function (callBackFn) {
-
     let respuesta = null
     try{
         const url = Frontend.API_GATEWAY + "/plantilla/listarnPersonas"
@@ -191,6 +193,40 @@ Plantilla.recupera = async function (callBackFn) {
         vectorPersonas = await respuesta.json()
         callBackFn(vectorPersonas.data)
     }
+}
+
+
+/**
+ * Función principal para responder al evento de elegir la opción "Listar nombres personas en orden"
+ */
+Plantilla.procesarListarNombresOrden = function () {
+    this.recupera(this.imprimeNombreOrdenado);
+}
+
+
+Plantilla.ordenarPorApellido = function (vector) {
+    vector.sort(function(a, b){
+        let apellido1 = a.data.apellidos.toUpperCase();
+        let apellido2 = b.data.apellidos.toUpperCase();
+        if (apellido1 < apellido2) {
+            return -1;
+        }
+        if (apellido1 > apellido2) {
+            return 1;
+        }
+        return 0;
+    });
+}
+
+Plantilla.imprimeNombreOrdenado = function (vector) {
+    Plantilla.ordenarPorApellido(vector); 
+    let mensaje = "";
+    mensaje += Plantilla.cabeceraTablaNombres();
+    vector.forEach(e => mensaje+= Plantilla.cuerpoListarPersonas(e))
+    mensaje += Plantilla.pieTabla();
+
+    Frontend.Article.actualizar("Listado de personas ordenado", mensaje);
+    return mensaje;
 }
 
 

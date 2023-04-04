@@ -178,6 +178,23 @@ describe("Plantilla.imprime", function(){
       }); 
 });
 
+describe("Plantilla.imprimeNombreOrdenado", function(){
+    it("Tendría que trabajar correctamente con vectores vacios", function(){
+        const vector = [];
+        const mensajeEsperado = Plantilla.cabeceraTablaNombres() + Plantilla.pieTabla();
+        const mensaje = Plantilla.imprimeNombreOrdenado(vector);
+        expect(mensaje).toBe(mensajeEsperado); 
+    });
+    it("Tendría que actualizar correctamente el titulo", function(){
+        const vector = [];
+        Plantilla.imprimeNombreOrdenado(vector);
+        const tituloEsperado = "Listado de personas ordenado";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+    });
+});
+
+
+
 
 /*
 IMPORTANTE
