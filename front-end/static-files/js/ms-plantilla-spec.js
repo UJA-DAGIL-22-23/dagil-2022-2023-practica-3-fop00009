@@ -191,7 +191,114 @@ describe("Plantilla.imprimeNombreOrdenado", function(){
         const tituloEsperado = "Listado de personas ordenado";
         expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
     });
+
+    
 });
+
+describe("Plantilla.cabeceraTablaConTodo", function(){
+    it("Tendría que devolver las etiquetas HTML para la cabecera de la tabla de listar personas con todos sus datos.", function(){
+        expect(Plantilla.cabeceraTablaConTodo()).toBe('<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Altura (cm)</th><th>Nacimiento</th><th>Participaciones en JJOO</th><th>Podios conseguidos</th></thead><tbody>');
+    });
+});
+
+describe("Plantilla.cuerpoListarConTodo",function(){
+    it("debería devolver una fila de tabla HTML con los datos de la persona proporcionada",
+    function(){
+        const personaPrueba = {ID: 1, nombre: 'Juan', apellidos: 'Pérez', altura: '190', nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'}, participacionesJJOO: '1', numPodiosConseguidos: '1'};
+        const fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td>Juan</td><td>Pérez</td><td>190</td><td>1/1/1 en España</td><td>1</td><td>1</td></tr>');
+    });
+
+    it("debería manejar correctamente los valores nulos e indefinidos",function () {
+        let personaPrueba = {ID: 1, nombre: null, apellidos: 'Pérez', altura: '190', nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'}, participacionesJJOO: '1', numPodiosConseguidos: '1'};
+        let fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td></td><td>Pérez</td><td>190</td><td>1/1/1 en España</td><td>1</td><td>1</td></tr>');
+        
+        personaPrueba = {ID: undefined, nombre: 'Juan', apellidos: 'Pérez', altura: '190', nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'}, participacionesJJOO: '1', numPodiosConseguidos: '1'};
+        fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td></td><td>Juan</td><td>Pérez</td><td>190</td><td>1/1/1 en España</td><td>1</td><td>1</td></tr>');
+    
+        personaPrueba = {ID: 1, nombre: 'Juan', apellidos: undefined, altura: '190', nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'}, participacionesJJOO: '1', numPodiosConseguidos: '1'};
+        fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td>Juan</td><td></td><td>190</td><td>1/1/1 en España</td><td>1</td><td>1</td></tr>');
+    
+        personaPrueba = {ID: 1, nombre: 'Juan', apellidos: 'Pérez', altura: null, nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'}, participacionesJJOO: '1', numPodiosConseguidos: '1'};
+        fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td>Juan</td><td>Pérez</td><td></td><td>1/1/1 en España</td><td>1</td><td>1</td></tr>');
+    
+        personaPrueba = {ID: 1, nombre: 'Juan', apellidos: 'Pérez', altura: '190', nacimiento: undefined, participacionesJJOO: '1', numPodiosConseguidos: '1'};
+        fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td>Juan</td><td>Pérez</td><td>190</td><td></td><td>1</td><td>1</td></tr>');
+    
+        personaPrueba = {ID: 1, nombre: 'Juan', apellidos: 'Pérez', altura: '190', nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'}, participacionesJJOO: null, numPodiosConseguidos: '1'};
+        fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td>Juan</td><td>Pérez</td><td>190</td><td>1/1/1 en España</td><td></td><td>1</td></tr>');
+    
+        personaPrueba = {ID: 1, nombre: 'Juan', apellidos: 'Pérez', altura: '190', nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'}, participacionesJJOO: '1', numPodiosConseguidos: undefined};
+        fila = Plantilla.cuerpoListarConTodo({ data: personaPrueba });
+        expect(fila).toBe('<tr><td>1</td><td>Juan</td><td>Pérez</td><td>190</td><td>1/1/1 en España</td><td>1</td><td></td></tr>');
+        
+    });
+});
+
+describe("Plantilla.imprimeConTodo", function(){
+    it("Tendría que trabajar correctamente con vectores vacios", function(){
+        const vector = [];
+        const mensajeEsperado = Plantilla.cabeceraTablaConTodo() + Plantilla.pieTabla();
+        const mensaje = Plantilla.imprimeConTodo(vector);
+        expect(mensaje).toBe(mensajeEsperado); 
+    });
+    it("Tendría que actualizar correctamente el titulo", function(){
+        const vector = [];
+        Plantilla.imprimeConTodo(vector);
+        const tituloEsperado = "Listado de personas con todo";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+    }); 
+    it('debería devolver un mensaje con una tabla HTML que muestre los datos de las personas proporcionadas', function() {
+        const personas = [
+            {
+              ID: 1,
+              nombre: 'Juan',
+              apellidos: 'Pérez',
+              altura: '190',
+              nacimiento: {dia: '1', mes: '1', año: '1', lugar: 'España'},
+              participacionesJJOO: '1',
+              numPodiosConseguidos: '1'
+            },
+            {
+              ID: 2,
+              nombre: 'María',
+              apellidos: 'García',
+              altura: '165',
+              nacimiento: {dia: '10', mes: '5', año: '1990', lugar: 'México'},
+              participacionesJJOO: '2',
+              numPodiosConseguidos: '3'
+            },
+            {
+              ID: 3,
+              nombre: 'Pedro',
+              apellidos: 'Rodríguez',
+              altura: '180',
+              nacimiento: {dia: '15', mes: '3', año: '1985', lugar: 'Argentina'},
+              participacionesJJOO: '3',
+              numPodiosConseguidos: '2'
+            }
+          ];
+        let mensajeEsperado =  Plantilla.cabeceraTablaConTodo()
+        personas.forEach(persona => {
+            const fila = `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
+            mensajeEsperado = mensajeEsperado + fila;
+        });
+            mensajeEsperado=mensajeEsperado+Plantilla.pieTabla();
+        const mensaje = Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo({ data: personas[0] }) + 
+        Plantilla.cuerpoListarConTodo({ data: personas[1] })+ Plantilla.cuerpoListarConTodo({ data: personas[2] })+Plantilla.pieTabla();
+        expect(mensaje).toBe(mensajeEsperado);
+      }); 
+
+    
+});
+
+
 
 
 

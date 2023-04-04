@@ -128,8 +128,54 @@ Plantilla.procesarListarNombres = function () {
 }
 
 
-Plantilla.imprime = function (vector) {
+/**
+ * Función principal para responder al evento de elegir la opción "Listar todos los datos de las personas"
+ */
+Plantilla.procesarPersonasConTodo = function () {
+    this.recupera(this.imprimeConTodo);
+}
+
+Plantilla.imprimeConTodo = function(vector){
+    let mensaje = "";
+    mensaje += Plantilla.cabeceraTablaConTodo();
+    vector.forEach(e => mensaje+= Plantilla.cuerpoListarConTodo(e));
+    mensaje += Plantilla.pieTabla();
+    Frontend.Article.actualizar("Listado de personas con todo", mensaje);
+    return mensaje;
+}
+
+Plantilla.cuerpoListarConTodo = function (p) {
+    const persona = p.data
+     
+    if (persona.ID === null || persona.ID === undefined) {
+        return `<tr><td></td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
+    }
+    if (persona.apellidos === null || persona.apellidos === undefined) {
+        return `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td></td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
+    }
+    if (persona.nombre === null || persona.nombre === undefined) {
+        return `<tr><td>${persona.ID}</td><td></td><td>${persona.apellidos}</td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
+    }
+    if (persona.altura === null || persona.altura === undefined) {
+        return `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td></td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
+    }
+    if (persona.nacimiento === null || persona.nacimiento === undefined) {
+        return `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td>${persona.altura}</td><td></td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
+    }
+    if (persona.participacionesJJOO === null || persona.participacionesJJOO === undefined) {
+        return `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td></td><td>${persona.numPodiosConseguidos}</td></tr>`;
+    } 
+    if (persona.numPodiosConseguidos === null || persona.numPodiosConseguidos === undefined) {
+        return `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td></td></tr>`;
+    }
     
+    return `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
+}
+
+Plantilla.cabeceraTablaConTodo = function () {
+    return `<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Altura (cm)</th><th>Nacimiento</th><th>Participaciones en JJOO</th><th>Podios conseguidos</th></thead><tbody>`;
+}
+Plantilla.imprime = function (vector) {
     let mensaje = "";
     mensaje += Plantilla.cabeceraTablaNombres();
     vector.forEach(e => mensaje+= Plantilla.cuerpoListarPersonas(e))
