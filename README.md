@@ -169,3 +169,23 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
    }
 ]
 ```
+# Primer incremento
+### Captura de pantalla del tablero trello al inicio del incremento
+![Captura de pantalla incremento 1 trello inicial](https://user-images.githubusercontent.com/124682676/229758426-b9ce4696-7222-40b6-be56-5c67690958bf.png)
+
+### Primera HU completada
+![hu 1 en done](https://user-images.githubusercontent.com/124682676/229758718-be219ab4-edc2-41eb-b6bb-dc090cab2b47.png)
+
+![Demostración HU 1](https://user-images.githubusercontent.com/124682676/229758775-44d3f29a-6294-4470-bf87-198f81f41a06.png)
+
+### Segunda HU completada
+![HU 2 en done](https://user-images.githubusercontent.com/124682676/229758861-df789d84-3832-444d-a826-9c57df162605.png)
+
+![Demostracion HU 2](https://user-images.githubusercontent.com/124682676/229758891-1aafe667-b2d0-4b97-b3cc-b3902e17a281.png)
+
+### Tercera HU completada
+![hu 3 en done](https://user-images.githubusercontent.com/124682676/229759117-9d555be3-7f53-4aef-9e17-66e15267d958.png)
+
+![Demostracion HU 3](https://user-images.githubusercontent.com/124682676/229759132-fa4eef9b-6dbf-4739-9c7d-849c40b254d4.png)
+
+
