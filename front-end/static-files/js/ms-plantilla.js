@@ -10,6 +10,11 @@
 /// Creo el espacio de nombres
 let Plantilla = {};
 
+var tipoOrden = 1;
+
+var vDatos;
+
+var vecesMostrado = 0;
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
     mensaje: "Datos Descargados No válidos",
@@ -134,6 +139,125 @@ Plantilla.procesarListarNombres = function () {
 Plantilla.procesarPersonasConTodo = function () {
     this.recupera(this.imprimeConTodo);
 }
+
+/**
+ * Función principal para responder al evento de elegir la opción "Listar todos los datos de las personas ordenado de diferentes"
+ */
+
+Plantilla.cambiarOrden = function (){
+   this.recupera(this.imprimeConBoton)
+}
+
+Plantilla.creaBoton = function(){
+    let num = (tipoOrden%5);
+    if(num == 0 ||vecesMostrado == 0){
+        vecesMostrado++;
+        return `<div class="contenedor"><button class="miBoton" onclick="Plantilla.nuevoOrden()">Cambiar orden</button></div><a class="subtitulo">Ordenado por ID</a><br></br>`
+    }
+    if(num == 1){
+        vecesMostrado++;
+        return `<div class="contenedor"><button class="miBoton" onclick="Plantilla.nuevoOrden()">Cambiar orden</button></div><a class="subtitulo">Ordenado por Nombre</a><br></br>`
+    }
+    if(num == 2){
+        vecesMostrado++;
+        return `<div class="contenedor"><button class="miBoton" onclick="Plantilla.nuevoOrden()">Cambiar orden</button></div><a class="subtitulo">Ordenado por Apellidos</a><br></br>`
+    }
+    if(num == 3){
+        vecesMostrado++;
+        return `<div class="contenedor"><button class="miBoton" onclick="Plantilla.nuevoOrden()">Cambiar orden</button></div><a class="subtitulo">Ordenado por Altura</a><br></br>`
+    }
+    if(num == 4){
+        vecesMostrado++;
+        return `<div class="contenedor"><button class="miBoton" onclick="Plantilla.nuevoOrden()">Cambiar orden</button></div><a class="subtitulo" >Ordenado por Número de podios conseguidos</a><br></br>`
+    }
+}
+
+Plantilla.nuevoOrden = function(){
+    if(tipoOrden%5==0){
+        vDatos.sort(function(a, b){
+            let id1 = a.data.ID
+            let id2 = b.data.ID
+            if (id1 < id2) {
+                return -1;
+            }
+            if (id1 > id2) {
+                return 1;
+            }
+            return 0;
+        });
+        Plantilla.imprimeConBoton(vDatos);
+    }
+    if(tipoOrden%5==1){
+        vDatos.sort(function(a, b){
+            let nombre1 = a.data.nombre.toUpperCase();
+            let nombre2 = b.data.nombre.toUpperCase();
+            if (nombre1 < nombre2) {
+                return -1;
+            }
+            if (nombre1 > nombre2) {
+                return 1;
+            }
+            return 0;
+        });
+        Plantilla.imprimeConBoton(vDatos);
+    }
+    if(tipoOrden%5==2){
+        vDatos.sort(function(a, b){
+            let apellido1 = a.data.apellidos.toUpperCase();
+            let apellido2 = b.data.apellidos.toUpperCase();
+            if (apellido1 < apellido2) {
+                return -1;
+            }
+            if (apellido1 > apellido2) {
+                return 1;
+            }
+            return 0;
+        });
+        Plantilla.imprimeConBoton(vDatos);
+    }
+    if(tipoOrden%5==3){
+        vDatos.sort(function(a, b){
+            let altura1 = a.data.altura;
+            let altura2 = b.data.altura;
+            if (altura1 < altura2) {
+                return -1;
+            }
+            if (altura1 > altura2) {
+                return 1;
+            }
+            return 0;
+        });
+        Plantilla.imprimeConBoton(vDatos);
+    }
+    if(tipoOrden%5==4){
+        vDatos.sort(function(a, b){
+            let pConseguidos1 = a.data.numPodiosConseguidos;
+            let pConseguidos2 = b.data.numPodiosConseguidos;
+            if (pConseguidos1 < pConseguidos2) {
+                return -1;
+            }
+            if (pConseguidos1 > pConseguidos2) {
+                return 1;
+            }
+            return 0;
+        });
+        Plantilla.imprimeConBoton(vDatos);
+    }
+    tipoOrden++;
+    
+}
+
+Plantilla.imprimeConBoton = function(vector){
+    let mensaje = "";
+    vDatos = vector;
+    mensaje+=Plantilla.creaBoton();
+    mensaje += Plantilla.cabeceraTablaConTodo();
+    vector.forEach(e => mensaje+= Plantilla.cuerpoListarConTodo(e));
+    mensaje += Plantilla.pieTabla();
+    Frontend.Article.actualizar("Listado de personas con diferente orden", mensaje);
+    return mensaje;
+}
+
 
 Plantilla.imprimeConTodo = function(vector){
     let mensaje = "";

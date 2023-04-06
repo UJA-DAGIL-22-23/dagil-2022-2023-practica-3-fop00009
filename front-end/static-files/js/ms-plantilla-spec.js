@@ -295,6 +295,85 @@ describe("Plantilla.imprimeConTodo", function(){
         expect(mensaje).toBe(mensajeEsperado);
       }); 
 
+      
+    
+});
+
+describe("Plantilla.nuevoOrden", function() {
+
+    beforeEach(function() {
+      vDatos = [
+        { data: { ID: 3, nombre: "Juan", apellidos: "Pérez", altura: 170, numPodiosConseguidos: 5 } },
+        { data: { ID: 2, nombre: "Ana", apellidos: "García", altura: 165, numPodiosConseguidos: 3 } },
+        { data: { ID: 1, nombre: "Pedro", apellidos: "López", altura: 180, numPodiosConseguidos: 2 } },
+      ];
+      tipoOrden = 0;
+    });
+    it("debe ordenar los datos por ID", function() {
+      Plantilla.nuevoOrden();
+      expect(vDatos[0].data.ID).toEqual(1);
+      expect(vDatos[1].data.ID).toEqual(2);
+      expect(vDatos[2].data.ID).toEqual(3);
+    });
+  
+    it("debe ordenar los datos por Nombre", function() {
+      tipoOrden = 1; // Simula un click en el botón 
+      Plantilla.nuevoOrden();
+      expect(vDatos[0].data.nombre).toEqual("Ana");
+      expect(vDatos[1].data.nombre).toEqual("Juan");
+      expect(vDatos[2].data.nombre).toEqual("Pedro");
+    });
+  
+    it("debe ordenar los datos por Apellidos", function() {
+      tipoOrden = 2; // Simula un click en el botón 
+      Plantilla.nuevoOrden();
+      expect(vDatos[0].data.apellidos).toEqual("García");
+      expect(vDatos[1].data.apellidos).toEqual("López");
+      expect(vDatos[2].data.apellidos).toEqual("Pérez");
+    });
+  
+    it("debe ordenar los datos por Altura", function() {
+      tipoOrden = 3; // Simula un click en el botón 
+      Plantilla.nuevoOrden();
+      expect(vDatos[0].data.altura).toEqual(165);
+      expect(vDatos[1].data.altura).toEqual(170);
+      expect(vDatos[2].data.altura).toEqual(180);
+    });
+  
+    it("debe ordenar los datos por Número de podios conseguidos", function() {
+      tipoOrden = 4; // Simula un click en el botón 
+      Plantilla.nuevoOrden();
+      expect(vDatos[0].data.numPodiosConseguidos).toEqual(2);
+      expect(vDatos[1].data.numPodiosConseguidos).toEqual(3);
+      expect(vDatos[2].data.numPodiosConseguidos).toEqual(5);
+    });
+  
+  }); 
+
+  
+  
+describe("Plantilla.creaBoton", function(){
+    it("Tendría que devolver las etiquetas HTML para el botón y saber en que orden se encuentra en ese momento.", function(){
+        const tipoOrdenes = ['ID', 'Nombre', 'Apellidos', 'Altura', 'Número de podios conseguidos'];
+        expect(Plantilla.creaBoton()).toContain('<button class="miBoton" onclick="Plantilla.nuevoOrden()">Cambiar orden</button>');
+        expect(Plantilla.creaBoton()).toContain(`<a class="subtitulo">Ordenado por ${tipoOrdenes[tipoOrden % 5]}</a>`);
+        
+    });
+});
+
+describe("Plantilla.imprimeConBoton", function(){
+    it("Tendría que trabajar correctamente con vectores vacios", function(){
+        const vector = [];
+        const mensajeEsperado = Plantilla.creaBoton()+Plantilla.cabeceraTablaConTodo() + Plantilla.pieTabla();
+        const mensaje = Plantilla.imprimeConBoton(vector);
+        expect(mensaje).toBe(mensajeEsperado); 
+    });
+    it("Tendría que actualizar correctamente el titulo", function(){
+        const vector = [];
+        Plantilla.imprimeConBoton(vector);
+        const tituloEsperado = "Listado de personas con diferente orden";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+    });
     
 });
 
