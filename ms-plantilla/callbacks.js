@@ -60,6 +60,7 @@ const CB_MODEL_SELECTS = {
             res.status(500).json({ error: error.description })
         }
     },
+    
     listanPersonas: async (req,res) => {
         try{
             let personas = await client.query(
@@ -73,6 +74,7 @@ const CB_MODEL_SELECTS = {
             CORS(res).status(500).json({ error: error.description })
         }
     },
+
 
 }
 

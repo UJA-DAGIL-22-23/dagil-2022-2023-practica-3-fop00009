@@ -148,6 +148,35 @@ Plantilla.cambiarOrden = function (){
    this.recupera(this.imprimeConBoton)
 }
 
+
+Plantilla.mostrar = function(idAMostrar){
+    let p = this.buscarPersona(idAMostrar);
+    this.imprimeUnaPersona(p)
+}
+
+Plantilla.imprimeUnaPersona = function (persona) {
+    let msj = "";
+    if(persona == undefined){
+        msj+="No se ha encontrado a la persona";
+    }else{
+        msj += Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo(persona) + Plantilla.pieTabla() ;
+    }
+    Frontend.Article.actualizar("Mostrar una persona", msj)
+    return msj
+}
+
+Plantilla.buscarPersona = function(idAMostrar){
+    let p = undefined
+    for(let i=0;i<vDatos.length;i++ ){
+        if(vDatos[i].data.ID == idAMostrar){
+            p = vDatos[i];
+            return p;
+        }
+    }
+    return p;
+}
+
+
 Plantilla.creaBoton = function(){
     let num = (tipoOrden%5);
     if(num == 0 ||vecesMostrado == 0){
@@ -261,6 +290,7 @@ Plantilla.imprimeConBoton = function(vector){
 
 Plantilla.imprimeConTodo = function(vector){
     let mensaje = "";
+    vDatos = vector;
     mensaje += Plantilla.cabeceraTablaConTodo();
     vector.forEach(e => mensaje+= Plantilla.cuerpoListarConTodo(e));
     mensaje += Plantilla.pieTabla();
@@ -296,11 +326,10 @@ Plantilla.cuerpoListarConTodo = function (p) {
     return `<tr><td>${persona.ID}</td><td>${persona.nombre}</td><td>${persona.apellidos}</td><td>${persona.altura}</td><td>${persona.nacimiento.dia}/${persona.nacimiento.mes}/${persona.nacimiento.año} en ${persona.nacimiento.lugar}</td><td>${persona.participacionesJJOO}</td><td>${persona.numPodiosConseguidos}</td></tr>`;
 }
 
-Plantilla.cabeceraTablaConTodo = function () {
-    return `<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Altura (cm)</th><th>Nacimiento</th><th>Participaciones en JJOO</th><th>Podios conseguidos</th></thead><tbody>`;
-}
+
 Plantilla.imprime = function (vector) {
     let mensaje = "";
+    vDatos = vector;
     mensaje += Plantilla.cabeceraTablaNombres();
     vector.forEach(e => mensaje+= Plantilla.cuerpoListarPersonas(e))
     mensaje += Plantilla.pieTabla();
@@ -389,6 +418,7 @@ Plantilla.ordenarPorApellido = function (vector) {
 }
 
 Plantilla.imprimeNombreOrdenado = function (vector) {
+    vDatos = vector;
     Plantilla.ordenarPorApellido(vector); 
     let mensaje = "";
     mensaje += Plantilla.cabeceraTablaNombres();
@@ -401,3 +431,7 @@ Plantilla.imprimeNombreOrdenado = function (vector) {
 
 
 
+
+Plantilla.cabeceraTablaConTodo = function () {
+    return `<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Altura (cm)</th><th>Nacimiento</th><th>Participaciones en JJOO</th><th>Podios conseguidos</th></thead><tbody>`;
+}

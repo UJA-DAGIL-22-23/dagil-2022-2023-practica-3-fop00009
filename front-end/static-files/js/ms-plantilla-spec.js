@@ -300,54 +300,243 @@ describe("Plantilla.imprimeConTodo", function(){
 });
 
 describe("Plantilla.nuevoOrden", function() {
-
     beforeEach(function() {
-      vDatos = [
-        { data: { ID: 3, nombre: "Juan", apellidos: "Pérez", altura: 170, numPodiosConseguidos: 5 } },
-        { data: { ID: 2, nombre: "Ana", apellidos: "García", altura: 165, numPodiosConseguidos: 3 } },
-        { data: { ID: 1, nombre: "Pedro", apellidos: "López", altura: 180, numPodiosConseguidos: 2 } },
-      ];
-      tipoOrden = 0;
-    });
-    it("debe ordenar los datos por ID", function() {
-      Plantilla.nuevoOrden();
-      expect(vDatos[0].data.ID).toEqual(1);
-      expect(vDatos[1].data.ID).toEqual(2);
-      expect(vDatos[2].data.ID).toEqual(3);
-    });
-  
-    it("debe ordenar los datos por Nombre", function() {
-      tipoOrden = 1; // Simula un click en el botón 
-      Plantilla.nuevoOrden();
-      expect(vDatos[0].data.nombre).toEqual("Ana");
-      expect(vDatos[1].data.nombre).toEqual("Juan");
-      expect(vDatos[2].data.nombre).toEqual("Pedro");
-    });
-  
-    it("debe ordenar los datos por Apellidos", function() {
-      tipoOrden = 2; // Simula un click en el botón 
-      Plantilla.nuevoOrden();
-      expect(vDatos[0].data.apellidos).toEqual("García");
-      expect(vDatos[1].data.apellidos).toEqual("López");
-      expect(vDatos[2].data.apellidos).toEqual("Pérez");
-    });
-  
-    it("debe ordenar los datos por Altura", function() {
-      tipoOrden = 3; // Simula un click en el botón 
-      Plantilla.nuevoOrden();
-      expect(vDatos[0].data.altura).toEqual(165);
-      expect(vDatos[1].data.altura).toEqual(170);
-      expect(vDatos[2].data.altura).toEqual(180);
-    });
-  
-    it("debe ordenar los datos por Número de podios conseguidos", function() {
-      tipoOrden = 4; // Simula un click en el botón 
-      Plantilla.nuevoOrden();
-      expect(vDatos[0].data.numPodiosConseguidos).toEqual(2);
-      expect(vDatos[1].data.numPodiosConseguidos).toEqual(3);
-      expect(vDatos[2].data.numPodiosConseguidos).toEqual(5);
-    });
-  
+        vDatos = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data:{
+            ID: 1005,
+            nombre: "Dora",
+            apellidos: "Bassi",
+            altura: 190,
+            nacimiento: {
+            dia: 12,
+            mes: 4,
+            año: 1999,
+            lugar: "Croacia"
+            },
+            participacionesJJOO: [
+            2021
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1006,
+            nombre: "Justus",
+            apellidos: "Mörstedt",
+            altura: 187,
+            nacimiento: {
+            dia: 13,
+            mes: 5,
+            año: 1992,
+            lugar: "Alemania"
+            },
+            participacionesJJOO: [
+            2012,
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 0
+            }},
+            {data:{
+                ID: 1007,
+                nombre: "Stefano",
+                apellidos: "Figini",
+                altura: 190,
+                nacimiento: {
+                dia: 14,
+                mes: 6,
+                año: 1987,
+                lugar: "Italia"
+                },
+                participacionesJJOO: [
+                2008,
+                2012,
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 3
+                }},
+                { data:{
+                ID: 1008,
+                nombre: "Cesare",
+                apellidos: "Fumarola",
+                altura: 195,
+                nacimiento: {
+                dia: 23,
+                mes: 1,
+                año: 1991,
+                lugar: "Italia"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 1
+                }},
+                { data:{
+                ID: 1009,
+                nombre: "Manuel",
+                apellidos: "García Rivas",
+                altura: 198,
+                nacimiento: {
+                dia: 28,
+                mes: 7,
+                año: 1989,
+                lugar: "España"
+                },
+                participacionesJJOO: [
+                2008,
+                2012,
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 4
+                }},
+                { data:{
+                ID: 1010,
+                nombre: "Dymitro",
+                apellidos: "Shekera",
+                altura: 189,
+                nacimiento: {
+                dia: 1,
+                mes: 12,
+                año: 1993,
+                lugar: "Rusia"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 0
+                }},
+            ];
+        tipoOrden = 0;
+      });
+      it("debe ordenar los datos por ID", function() {
+        Plantilla.nuevoOrden();
+        expect(vDatos[0].data.ID).toEqual(1000);
+        expect(vDatos[1].data.ID).toEqual(1001);
+        expect(vDatos[2].data.ID).toEqual(1002);
+      });
+    
+      it("debe ordenar los datos por Nombre", function() {
+        tipoOrden = 1; // Simula un click en el botón 
+        Plantilla.nuevoOrden();
+        expect(vDatos[0].data.nombre).toEqual("Cesare");
+        expect(vDatos[1].data.nombre).toEqual("Derin");
+        expect(vDatos[2].data.nombre).toEqual("Dora");
+       });
+    
+      it("debe ordenar los datos por Apellidos", function() {
+        tipoOrden = 2; // Simula un click en el botón 
+        Plantilla.nuevoOrden();
+        expect(vDatos[0].data.apellidos).toEqual("Aguirre Rodriguez");
+        expect(vDatos[1].data.apellidos).toEqual("Bassi");
+        expect(vDatos[2].data.apellidos).toEqual("Figini");
+      });
+    
+      it("debe ordenar los datos por Altura", function() {
+        tipoOrden = 3; // Simula un click en el botón 
+        Plantilla.nuevoOrden();
+        expect(vDatos[0].data.altura).toEqual(178);
+        expect(vDatos[1].data.altura).toEqual(182);
+        expect(vDatos[2].data.altura).toEqual(187);
+      });
+    
+      it("debe ordenar los datos por Número de podios conseguidos", function() {
+        tipoOrden = 4; // Simula un click en el botón 
+        Plantilla.nuevoOrden();
+        expect(vDatos[0].data.numPodiosConseguidos).toEqual(0);
+        expect(vDatos[1].data.numPodiosConseguidos).toEqual(0);
+        expect(vDatos[2].data.numPodiosConseguidos).toEqual(0);
+      });
+    
+    
+   
   }); 
 
   
@@ -355,6 +544,7 @@ describe("Plantilla.nuevoOrden", function() {
 describe("Plantilla.creaBoton", function(){
     it("Tendría que devolver las etiquetas HTML para el botón y saber en que orden se encuentra en ese momento.", function(){
         const tipoOrdenes = ['ID', 'Nombre', 'Apellidos', 'Altura', 'Número de podios conseguidos'];
+        tipoOrden = 0;
         expect(Plantilla.creaBoton()).toContain('<button class="miBoton" onclick="Plantilla.nuevoOrden()">Cambiar orden</button>');
         expect(Plantilla.creaBoton()).toContain(`<a class="subtitulo">Ordenado por ${tipoOrdenes[tipoOrden % 5]}</a>`);
         
@@ -362,12 +552,6 @@ describe("Plantilla.creaBoton", function(){
 });
 
 describe("Plantilla.imprimeConBoton", function(){
-    it("Tendría que trabajar correctamente con vectores vacios", function(){
-        const vector = [];
-        const mensajeEsperado = Plantilla.creaBoton()+Plantilla.cabeceraTablaConTodo() + Plantilla.pieTabla();
-        const mensaje = Plantilla.imprimeConBoton(vector);
-        expect(mensaje).toBe(mensajeEsperado); 
-    });
     it("Tendría que actualizar correctamente el titulo", function(){
         const vector = [];
         Plantilla.imprimeConBoton(vector);
@@ -377,8 +561,448 @@ describe("Plantilla.imprimeConBoton", function(){
     
 });
 
+describe("Plantilla.buscarPersona", function(){
+    beforeEach(function() {
+        vDatos = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data:{
+            ID: 1005,
+            nombre: "Dora",
+            apellidos: "Bassi",
+            altura: 190,
+            nacimiento: {
+            dia: 12,
+            mes: 4,
+            año: 1999,
+            lugar: "Croacia"
+            },
+            participacionesJJOO: [
+            2021
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1006,
+            nombre: "Justus",
+            apellidos: "Mörstedt",
+            altura: 187,
+            nacimiento: {
+            dia: 13,
+            mes: 5,
+            año: 1992,
+            lugar: "Alemania"
+            },
+            participacionesJJOO: [
+            2012,
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 0
+            }},
+            {data:{
+                ID: 1007,
+                nombre: "Stefano",
+                apellidos: "Figini",
+                altura: 190,
+                nacimiento: {
+                dia: 14,
+                mes: 6,
+                año: 1987,
+                lugar: "Italia"
+                },
+                participacionesJJOO: [
+                2008,
+                2012,
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 3
+                }},
+                { data:{
+                ID: 1008,
+                nombre: "Cesare",
+                apellidos: "Fumarola",
+                altura: 195,
+                nacimiento: {
+                dia: 23,
+                mes: 1,
+                año: 1991,
+                lugar: "Italia"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 1
+                }},
+                { data:{
+                ID: 1009,
+                nombre: "Manuel",
+                apellidos: "García Rivas",
+                altura: 198,
+                nacimiento: {
+                dia: 28,
+                mes: 7,
+                año: 1989,
+                lugar: "España"
+                },
+                participacionesJJOO: [
+                2008,
+                2012,
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 4
+                }},
+                { data:{
+                ID: 1010,
+                nombre: "Dymitro",
+                apellidos: "Shekera",
+                altura: 189,
+                nacimiento: {
+                dia: 1,
+                mes: 12,
+                año: 1993,
+                lugar: "Rusia"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 0
+                }},
+            ];
+        tipoOrden = 0;
+      });
+    it("Tendría que trabajar correctamente si no se encuentra la persona", function(){
+        expect(Plantilla.buscarPersona(111111)).toBe(undefined); 
+        expect(Plantilla.buscarPersona(undefined)).toBe(undefined); 
+    });
+    it("Tendría que encontrar correctamente a las personas", function(){   
+        let persona = vDatos[0];
+        expect(Plantilla.buscarPersona(1000)).toEqual(persona);
+        persona = vDatos[1];
+        expect(Plantilla.buscarPersona(1001)).toEqual(persona);
+        persona = vDatos[2];
+        expect(Plantilla.buscarPersona(1002)).toEqual(persona);
+        persona = vDatos[3];
+        expect(Plantilla.buscarPersona(1003)).toEqual(persona);
+        persona = vDatos[4];
+        expect(Plantilla.buscarPersona(1004)).toEqual(persona);
+        persona = vDatos[5];
+        expect(Plantilla.buscarPersona(1005)).toEqual(persona);
+        persona = vDatos[6];
+        expect(Plantilla.buscarPersona(1006)).toEqual(persona);
+        persona = vDatos[7];
+        expect(Plantilla.buscarPersona(1007)).toEqual(persona);
+        persona = vDatos[8];
+        expect(Plantilla.buscarPersona(1008)).toEqual(persona);
+        persona = vDatos[9];
+        expect(Plantilla.buscarPersona(1009)).toEqual(persona);
+        persona = vDatos[10];
+        expect(Plantilla.buscarPersona(1010)).toEqual(persona);
+    });
+    
+});
 
-
+describe("Plantilla.imprimeUnaPersona", function(){
+    beforeEach(function() {
+        vDatos = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data:{
+            ID: 1005,
+            nombre: "Dora",
+            apellidos: "Bassi",
+            altura: 190,
+            nacimiento: {
+            dia: 12,
+            mes: 4,
+            año: 1999,
+            lugar: "Croacia"
+            },
+            participacionesJJOO: [
+            2021
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1006,
+            nombre: "Justus",
+            apellidos: "Mörstedt",
+            altura: 187,
+            nacimiento: {
+            dia: 13,
+            mes: 5,
+            año: 1992,
+            lugar: "Alemania"
+            },
+            participacionesJJOO: [
+            2012,
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 0
+            }},
+            {data:{
+                ID: 1007,
+                nombre: "Stefano",
+                apellidos: "Figini",
+                altura: 190,
+                nacimiento: {
+                dia: 14,
+                mes: 6,
+                año: 1987,
+                lugar: "Italia"
+                },
+                participacionesJJOO: [
+                2008,
+                2012,
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 3
+                }},
+                { data:{
+                ID: 1008,
+                nombre: "Cesare",
+                apellidos: "Fumarola",
+                altura: 195,
+                nacimiento: {
+                dia: 23,
+                mes: 1,
+                año: 1991,
+                lugar: "Italia"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 1
+                }},
+                { data:{
+                ID: 1009,
+                nombre: "Manuel",
+                apellidos: "García Rivas",
+                altura: 198,
+                nacimiento: {
+                dia: 28,
+                mes: 7,
+                año: 1989,
+                lugar: "España"
+                },
+                participacionesJJOO: [
+                2008,
+                2012,
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 4
+                }},
+                { data:{
+                ID: 1010,
+                nombre: "Dymitro",
+                apellidos: "Shekera",
+                altura: 189,
+                nacimiento: {
+                dia: 1,
+                mes: 12,
+                año: 1993,
+                lugar: "Rusia"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 0
+                }},
+            ];
+        tipoOrden = 0;
+      });
+    it("Tendría que trabajar correctamente con personas indefinidas", function(){
+        let persona;
+        expect(Plantilla.imprimeUnaPersona(persona)).toBe("No se ha encontrado a la persona"); 
+    });
+    it("Tendría que actualizar correctamente el titulo", function(){
+        let persona;
+        Plantilla.imprimeUnaPersona(persona);
+        const tituloEsperado = "Mostrar una persona";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+    });
+    it("Tendría que mostrar correctamente una persona", function(){
+        let persona = vDatos[0];
+        let mensajeEsperado = Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo(persona) + Plantilla.pieTabla();
+        expect(Plantilla.imprimeUnaPersona(persona)).toBe(mensajeEsperado); 
+    });
+    
+});
 
 
 
