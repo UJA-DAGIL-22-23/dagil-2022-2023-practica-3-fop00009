@@ -188,4 +188,28 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
 
 ![Demostracion HU 3](https://user-images.githubusercontent.com/124682676/229759132-fa4eef9b-6dbf-4739-9c7d-849c40b254d4.png)
 
+# Segundo incremento
+### Captura de pantalla del tablero trello al inicio del segundo incremento
+![trello antes de incremento 2](https://user-images.githubusercontent.com/124682676/230748751-ed3b8fa6-1b0b-4b88-b2ff-6e396ae43d60.png)
+
+### Cuarta HU completada
+![HU 4 en done](https://user-images.githubusercontent.com/124682676/230748767-c567064f-b1f6-4591-911b-c26fa84be69b.png)
+
+![Demostración HU 4](https://user-images.githubusercontent.com/124682676/230748769-06bd1a4c-52d5-4c8d-a6fe-2fc43ed72f6c.png)
+
+### Quinta HU completada
+![HU 5 done](https://user-images.githubusercontent.com/124682676/230748792-8540aeaf-8c9c-4cf8-a6a6-794f6420d158.png)
+
+![Demostración HU 5 (1)](https://user-images.githubusercontent.com/124682676/230748796-1baae3f2-f450-402b-95ce-ae21d3c337ae.png)
+![Demostración HU 5 (2)](https://user-images.githubusercontent.com/124682676/230748798-2b088c7e-2840-40c2-98a3-355660884f0c.png)
+![Demostración HU 5 (3)](https://user-images.githubusercontent.com/124682676/230748799-1c82f27a-9663-4952-9914-e64bc4d5c61f.png)
+![Demostración HU 5 (4)](https://user-images.githubusercontent.com/124682676/230748805-2358872f-a265-401e-b1a9-640fb0a9fc9d.png)
+![Demostración HU 5 (5)](https://user-images.githubusercontent.com/124682676/230748807-22eea445-2be0-49e7-b47e-271670eefca7.png)
+
+### Sexta HU completada
+![HU 6 done](https://user-images.githubusercontent.com/124682676/230748812-c9e24acf-5ab6-4e33-9a62-8d41c4390dc9.png)
+
+![Demostración HU 6](https://user-images.githubusercontent.com/124682676/230748814-01ba736f-2969-4c9c-a34a-adf8c1f1ccb6.png)
+
+
 
