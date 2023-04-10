@@ -228,3 +228,5 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
 ![image](https://user-images.githubusercontent.com/124682676/231000899-dad894c5-a857-40ea-93e0-8a208f9e1651.png)
 ![demostracion HU 8](https://user-images.githubusercontent.com/124682676/231000147-44adb64c-4cd4-487e-887a-7ae746a6d9b1.png)
 
+### Tablero trello al final del incremento
+![image](https://user-images.githubusercontent.com/124682676/231001508-9e657c75-da5b-46df-97bf-69d3c9cd712f.png)
