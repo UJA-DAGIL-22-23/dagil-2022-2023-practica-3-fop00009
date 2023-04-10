@@ -1036,7 +1036,133 @@ describe("Plantilla.anteriorPersona", function(){
 });
 
 
+describe("Plantilla.pantallaBuscarNombre", function () {
+    it("Tendría que devolver las etiquetas HTML para la pagina de buscar por nombre",function () {
+            expect(Plantilla.pantallaBuscarNombre()).toBe('<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>');
+    });
+});
 
+describe("Plantilla.mostrarPBuscada", function () {
+    it("Tendría que devolver las etiquetas HTML para la pagina de la persona buscada",function () {
+        let persona = { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }};
+            let mensajeEsperado = '<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>'+Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo(persona) + Plantilla.pieTabla()    
+        expect(Plantilla.mostrarPBuscada(persona)).toBe(mensajeEsperado);
+    });
+    it("Tendría que devolver un mensaje de error si la persona esta indefinida",function () {
+        let persona = undefined
+            let mensajeEsperado = '<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>' + '<div class="error"><p>¡Error! No se ha encontrado el nombre.</p> </div>'    
+        expect(Plantilla.mostrarPBuscada(persona)).toBe(mensajeEsperado);
+    });
+});
+
+describe("Plantilla.busca", function () {
+    it("Tendría que devolver undefined si no se encuentra a la persona",function () {
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}];    
+            document.getElementById("buscar").valor = undefined;
+            expect(Plantilla.busca(vector)).toEqual(Plantilla.mostrarPBuscada(undefined));
+    });
+}); 
 
 /*
 IMPORTANTE
