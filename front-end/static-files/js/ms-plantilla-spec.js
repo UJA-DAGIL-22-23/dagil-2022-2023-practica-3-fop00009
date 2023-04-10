@@ -998,11 +998,43 @@ describe("Plantilla.imprimeUnaPersona", function(){
     });
     it("Tendría que mostrar correctamente una persona", function(){
         let persona = vDatos[0];
-        let mensajeEsperado = Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo(persona) + Plantilla.pieTabla();
+        let mensajeEsperado = '<div class="botones"><button class="anterior" onclick="Plantilla.anteriorPersona(idActual)">Anterior</button><button class="siguiente" onclick="Plantilla.siguientePersona(idActual)">Siguiente</button></div>'+Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo(persona) + Plantilla.pieTabla();
         expect(Plantilla.imprimeUnaPersona(persona)).toBe(mensajeEsperado); 
     });
     
 });
+
+describe("Plantilla.siguientePersona", function(){
+    it("Tendría que pasar correctamente a la siguiente persona", function(){
+        let idEsperado = 1001
+        let id=Plantilla.siguientePersona(idEsperado-1)
+        expect(idEsperado).toEqual(id);
+        idEsperado = 1003;
+        id=Plantilla.siguientePersona(idEsperado-1)
+        expect(idEsperado).toEqual(id);
+    });
+    it("Tendría que ser ciclico, es decir, pasar del último al primero", function(){
+        let id = idUltimaPersona
+        expect(Plantilla.siguientePersona(id)).toEqual(idPrimeraPersona);
+    });
+    
+});
+
+describe("Plantilla.anteriorPersona", function(){
+    it("Tendría que pasar correctamente a la anterior persona", function(){
+        let idEsperado = 1001
+        let id=Plantilla.anteriorPersona(idEsperado+1)
+        expect(idEsperado).toEqual(id);
+        idEsperado = 1003;
+        id=Plantilla.anteriorPersona(idEsperado+1)
+        expect(idEsperado).toEqual(id);
+    });
+    it("Tendría que ser ciclico, es decir, pasar del primero al ultimo", function(){
+        let id = idPrimeraPersona;
+        expect(Plantilla.anteriorPersona(id)).toEqual(idUltimaPersona);
+    });
+});
+
 
 
 

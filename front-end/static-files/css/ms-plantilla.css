@@ -64,3 +64,38 @@ table.listado-proyectos tbody tr {
     letter-spacing: 2px; /* Establecer el espacio entre letras */
     margin-top: 50px; /* Agregar un margen superior */
 }
+
+.botones {
+    text-align: center; 
+	margin-top: 50px; 
+  }
+  
+  .anterior {
+    float: left;
+    background-color: #f30707; 
+	border: none; 
+	color: white; 
+	padding: 10px 27px; 
+	text-align: center;
+	text-decoration: none; 
+	font-size: 13px; 
+	margin: 4px 2px; 
+	cursor: pointer; 
+	border-radius: 8px; 
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  .siguiente {
+    float: right;
+    background-color: #4CAF50; 
+	border: none; 
+	color: white; 
+	padding: 10px 27px; 
+	text-align: center;
+	text-decoration: none; 
+	font-size: 13px; 
+	margin: 4px 2px; 
+	cursor: pointer; 
+	border-radius: 8px; 
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }

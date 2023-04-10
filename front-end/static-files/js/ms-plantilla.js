@@ -14,6 +14,14 @@ var tipoOrden = 1;
 
 var vDatos;
 
+
+/// variables para la HU 7
+var idUltimaPersona = 1010;
+
+var idPrimeraPersona = 1000;
+
+var idActual = 1000;
+
 var vecesMostrado = 0;
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
@@ -159,11 +167,38 @@ Plantilla.imprimeUnaPersona = function (persona) {
     if(persona == undefined){
         msj+="No se ha encontrado a la persona";
     }else{
-        msj += Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo(persona) + Plantilla.pieTabla() ;
+        idActual = persona.data.ID;
+        msj += '<div class="botones"><button class="anterior" onclick="Plantilla.anteriorPersona(idActual)">Anterior</button><button class="siguiente" onclick="Plantilla.siguientePersona(idActual)">Siguiente</button></div>' + Plantilla.cabeceraTablaConTodo() + Plantilla.cuerpoListarConTodo(persona) + Plantilla.pieTabla() 
+        
     }
+    
     Frontend.Article.actualizar("Mostrar una persona", msj)
     return msj
 }
+
+
+Plantilla.siguientePersona=function(id){
+    if(id == idUltimaPersona){
+        id = idPrimeraPersona;
+    }else{
+        id+=1;
+    }
+    let p = Plantilla.buscarPersona(id);
+    this.imprimeUnaPersona(p);
+    return id;
+}
+
+Plantilla.anteriorPersona=function(id){
+    if(id == idPrimeraPersona){
+        id = idUltimaPersona;
+    }else{
+        id-=1;
+    }
+    let p = Plantilla.buscarPersona(id);
+    this.imprimeUnaPersona(p);
+    return id;
+}
+
 
 Plantilla.buscarPersona = function(idAMostrar){
     let p = undefined
