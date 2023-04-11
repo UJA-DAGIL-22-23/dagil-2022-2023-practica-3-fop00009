@@ -100,7 +100,7 @@ table.listado-proyectos tbody tr {
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
 
-  input[type="text"] {
+  input {
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -125,4 +125,13 @@ table.listado-proyectos tbody tr {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
+  }
+
+  .prueba {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
   }

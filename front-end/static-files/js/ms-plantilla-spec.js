@@ -1159,10 +1159,1078 @@ describe("Plantilla.busca", function () {
             ],
             numPodiosConseguidos: 1
             }}];    
-            document.getElementById("buscar").valor = undefined;
+            const entrada = document.createElement("input");
+            const boton = document.createElement("button");
+    
+            entrada.setAttribute("type", "text");
+            entrada.setAttribute("value", undefined);
+            entrada.setAttribute("id", "buscar");
+            entrada.setAttribute("class", "prueba");
+    
+            document.body.appendChild(entrada)
             expect(Plantilla.busca(vector)).toEqual(Plantilla.mostrarPBuscada(undefined));
     });
-}); 
+});
+
+describe("Plantilla.pantallaBuscarCampos", function () {
+    it("Tendría que mostrar la pagina correctamente",function () {
+        let mensaje = "";
+        mensaje+='<input type="text" id="buscarID" placeholder="Introduce un ID"><button id="boton1" onclick="Plantilla.buscaID(vDatos)">Buscar</button>'  
+        mensaje+='<input type="text" id="buscarApellidos" placeholder="Introduce unos apellidos"><button id="boton2" onclick="Plantilla.buscaApellidos(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarAltura" min = "0" placeholder="Altura maxima (cm)"><button id="boton3" onclick="Plantilla.buscaAltura(vDatos)">Buscar</button>'
+        mensaje+='<input type="date" id="buscarFecha" placeholder="Introduce una fecha"><button id="boton4" onclick="Plantilla.buscaFecha(vDatos)">Buscar</button>'
+        mensaje+='<input type="text" id="buscarLugar" placeholder="Introduce un lugar de nacimiento"><button id="boton5" onclick="Plantilla.buscaLugar(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarAño" min = "0" placeholder="Año de participación"><button id="boton6" onclick="Plantilla.buscaAño(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarPodios" min = "0" placeholder="Introduce un numero de podios"><button id="boton7" onclick="Plantilla.buscaPodios(vDatos)">Buscar</button>'
+        expect(Plantilla.pantalllaBuscarCampos()).toBe(mensaje);
+
+    });
+    it("Tendría que actualizar correctamente el titulo",function () {
+        Plantilla.pantalllaBuscarCampos();
+        const tituloEsperado = "Buscar persona por diferentes campos";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+    });
+});
+
+describe("Plantilla.imprimirPersonasBuscada", function () {
+    it("Tendría que mostrar un mensaje de error para un vector vacio",function () {
+        let mensaje = "";
+        mensaje+='<input type="text" id="buscarID" placeholder="Introduce un ID"><button id="boton1" onclick="Plantilla.buscaID(vDatos)">Buscar</button>'  
+        mensaje+='<input type="text" id="buscarApellidos" placeholder="Introduce unos apellidos"><button id="boton2" onclick="Plantilla.buscaApellidos(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarAltura" min = "0" placeholder="Altura maxima (cm)"><button id="boton3" onclick="Plantilla.buscaAltura(vDatos)">Buscar</button>'
+        mensaje+='<input type="date" id="buscarFecha" placeholder="Introduce una fecha"><button id="boton4" onclick="Plantilla.buscaFecha(vDatos)">Buscar</button>'
+        mensaje+='<input type="text" id="buscarLugar" placeholder="Introduce un lugar de nacimiento"><button id="boton5" onclick="Plantilla.buscaLugar(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarAño" min = "0" placeholder="Año de participación"><button id="boton6" onclick="Plantilla.buscaAño(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarPodios" min = "0" placeholder="Introduce un numero de podios"><button id="boton7" onclick="Plantilla.buscaPodios(vDatos)">Buscar</button>'
+        mensaje+='<div class="error"><p>¡Error! No se ha encontrado lo que buscabas.</p> </div>'
+        let vector = []
+        expect(Plantilla.imprimirPersonasBuscada(vector, 1)).toBe(mensaje);
+    });
+    it("Tendría que actualizar correctamente el titulo para los diferentes modos",function () {
+        let vector = []
+        Plantilla.imprimirPersonasBuscada(vector,1);
+        let tituloEsperado = "ID buscada";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+
+        Plantilla.imprimirPersonasBuscada(vector,2);
+        tituloEsperado = "Apellidos buscados";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+        
+        Plantilla.imprimirPersonasBuscada(vector,3);
+        tituloEsperado = "Altura menores o iguales a la buscada";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+       
+        Plantilla.imprimirPersonasBuscada(vector,4);
+        tituloEsperado = "Personas con menos edad que la fecha introducida";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+        
+        Plantilla.imprimirPersonasBuscada(vector,5);
+        tituloEsperado = "Personas del lugar de nacimiento buscado";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+        
+        Plantilla.imprimirPersonasBuscada(vector,6);
+        tituloEsperado = "Personas que han participado en los JJOO en este año";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+       
+        Plantilla.imprimirPersonasBuscada(vector,7);
+        tituloEsperado = "Personas que han conseguido más podios de los conseguidos";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+    });
+    it("Tendría que actualizar correctamente el titulo para modos incorrectos",function () {
+        let vector = []
+        Plantilla.imprimirPersonasBuscada(vector, undefined);
+        let tituloEsperado = "Buscar persona por diferentes campos";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+
+        Plantilla.imprimirPersonasBuscada(vector, 0);
+        tituloEsperado = "Buscar persona por diferentes campos";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+
+        Plantilla.imprimirPersonasBuscada(vector, null);
+        tituloEsperado = "Buscar persona por diferentes campos";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+
+        Plantilla.imprimirPersonasBuscada(vector, 8);
+        tituloEsperado = "Buscar persona por diferentes campos";
+        expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
+    });
+    it("Tendría que mostrar correctamente a todas las personas del vector",function () {
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}]; 
+        let mensaje ="";
+        mensaje+='<input type="text" id="buscarID" placeholder="Introduce un ID"><button id="boton1" onclick="Plantilla.buscaID(vDatos)">Buscar</button>'  
+        mensaje+='<input type="text" id="buscarApellidos" placeholder="Introduce unos apellidos"><button id="boton2" onclick="Plantilla.buscaApellidos(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarAltura" min = "0" placeholder="Altura maxima (cm)"><button id="boton3" onclick="Plantilla.buscaAltura(vDatos)">Buscar</button>'
+        mensaje+='<input type="date" id="buscarFecha" placeholder="Introduce una fecha"><button id="boton4" onclick="Plantilla.buscaFecha(vDatos)">Buscar</button>'
+        mensaje+='<input type="text" id="buscarLugar" placeholder="Introduce un lugar de nacimiento"><button id="boton5" onclick="Plantilla.buscaLugar(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarAño" min = "0" placeholder="Año de participación"><button id="boton6" onclick="Plantilla.buscaAño(vDatos)">Buscar</button>'
+        mensaje+='<input type="number" id="buscarPodios" min = "0" placeholder="Introduce un numero de podios"><button id="boton7" onclick="Plantilla.buscaPodios(vDatos)">Buscar</button>'
+        mensaje += Plantilla.cabeceraTablaConTodo();
+        vector.forEach(e => mensaje+= Plantilla.cuerpoListarConTodo(e));
+        mensaje += Plantilla.pieTabla();
+        expect(Plantilla.imprimirPersonasBuscada(vector, 0)).toEqual(mensaje);
+    });
+});
+
+describe("Plantilla.buscaID", function(){
+    it("Tendría que buscar correctamente el ID", function(){
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}]; 
+
+        const entrada = document.createElement("input");
+        const boton = document.createElement("button");
+
+        entrada.setAttribute("type", "text");
+        entrada.setAttribute("value", "1000");
+        entrada.setAttribute("id", "buscarID");
+        entrada.setAttribute("class", "prueba");
+
+        boton.setAttribute("id","boton1");
+        document.body.appendChild(entrada)
+
+        vectorSalida = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }}]
+
+        expect(Plantilla.buscaID(vector)).toContain(Plantilla.imprimirPersonasBuscada(vectorSalida, 1));
+    });
+});
+    describe("Plantilla.buscaAltura", function(){
+        it("Tendría que buscar correctamente las alturas menores o iguales", function(){
+            vector = [
+                { data: {
+                ID: 1000,
+                nombre: "Francisco",
+                apellidos: "Salazar Segovia",
+                altura: 190,
+                nacimiento: {
+                dia: 5,
+                mes: 9,
+                año: 1989,
+                lugar: "España"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 1
+                }},
+                { data: {
+                ID: 1001,
+                nombre: "Paula",
+                apellidos: "Aguirre Rodriguez",
+                altura: 178,
+                nacimiento: {
+                dia: 19,
+                mes: 11,
+                año: 1978,
+                lugar: "Colombia"
+                },
+                participacionesJJOO: [
+                1996,
+                2000,
+                2004
+                ],
+                numPodiosConseguidos: 2
+                }},
+                { data:{
+                ID: 1002,
+                nombre: "Viktoriia",
+                apellidos: "Uvarova ",
+                altura: 182,
+                nacimiento: {
+                dia: 17,
+                mes: 11,
+                año: 1983,
+                lugar: "Ucrania"
+                },
+                participacionesJJOO: [
+                2004
+                ],
+                numPodiosConseguidos: 0
+                }},
+                { data:{
+                ID: 1003,
+                nombre: "Peter",
+                apellidos: "Holoda ",
+                altura: 196,
+                nacimiento: {
+                dia: 9,
+                mes: 1,
+                año: 1996,
+                lugar: "Hungría"
+                },
+                participacionesJJOO: [
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 2
+                }},
+                { data:{
+                ID: 1004,
+                nombre: "Derin",
+                apellidos: "Toparlak",
+                altura: 193,
+                nacimiento: {
+                dia: 20,
+                mes: 7,
+                año: 1995,
+                lugar: "Turquía"
+                },
+                participacionesJJOO: [
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 1
+                }}]; 
+    
+            const entrada = document.createElement("input");
+            const boton = document.createElement("button");
+    
+            entrada.setAttribute("type", "number");
+            entrada.setAttribute("value", 185);
+            entrada.setAttribute("id", "buscarAltura");
+            entrada.setAttribute("class", "prueba");
+    
+            boton.setAttribute("id","boton2");
+            document.body.appendChild(entrada)
+    
+            vectorSalida = [
+                { data: {
+                    ID: 1001,
+                    nombre: "Paula",
+                    apellidos: "Aguirre Rodriguez",
+                    altura: 178,
+                    nacimiento: {
+                    dia: 19,
+                    mes: 11,
+                    año: 1978,
+                    lugar: "Colombia"
+                    },
+                    participacionesJJOO: [
+                    1996,
+                    2000,
+                    2004
+                    ],
+                    numPodiosConseguidos: 2
+                    }},
+                    { data:{
+                    ID: 1002,
+                    nombre: "Viktoriia",
+                    apellidos: "Uvarova ",
+                    altura: 182,
+                    nacimiento: {
+                    dia: 17,
+                    mes: 11,
+                    año: 1983,
+                    lugar: "Ucrania"
+                    },
+                    participacionesJJOO: [
+                    2004
+                    ],
+                    numPodiosConseguidos: 0
+                    }}
+            ]
+    
+            expect(Plantilla.buscaAltura(vector)).toContain(Plantilla.imprimirPersonasBuscada(vectorSalida, 3));
+        });
+    
+});
+
+describe("Plantilla.buscaApellidos", function(){
+    it("Tendría que buscar correctamente los apellidos", function(){
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}]; 
+
+        const entrada = document.createElement("input");
+        const boton = document.createElement("button");
+
+        entrada.setAttribute("type", "text");
+        entrada.setAttribute("value", "Toparlak");
+        entrada.setAttribute("id", "buscarApellidos");
+        entrada.setAttribute("class", "prueba");
+
+        boton.setAttribute("id","boton3");
+        document.body.appendChild(entrada)
+
+        vectorSalida = [
+            { data:{
+                ID: 1004,
+                nombre: "Derin",
+                apellidos: "Toparlak",
+                altura: 193,
+                nacimiento: {
+                dia: 20,
+                mes: 7,
+                año: 1995,
+                lugar: "Turquía"
+                },
+                participacionesJJOO: [
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 1
+                }}
+        ]
+
+        expect(Plantilla.buscaApellidos(vector)).toContain(Plantilla.imprimirPersonasBuscada(vectorSalida, 2));
+    });
+
+});
+
+describe("Plantilla.buscaFecha", function(){
+    it("Tendría que buscar correctamente las fechas menores que la introducida", function(){
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}]; 
+
+        const entrada = document.createElement("input");
+        const boton = document.createElement("button");
+        
+        entrada.setAttribute("type", "date");
+        entrada.setAttribute("value", undefined);
+        entrada.setAttribute("id", "buscarFecha");
+        entrada.setAttribute("class", "prueba");
+
+        boton.setAttribute("id","boton4");
+        document.body.appendChild(entrada)
+
+        vectorSalida = [
+            
+        ]
+
+        expect(Plantilla.buscaFecha(vector)).toContain(Plantilla.imprimirPersonasBuscada(vectorSalida, 4));
+    });
+
+});
+
+describe("Plantilla.buscaLugar", function(){
+    it("Tendría que buscar correctamente el lugar de nacimiento", function(){
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}]; 
+
+        const entrada = document.createElement("input");
+        const boton = document.createElement("button");
+
+        entrada.setAttribute("type", "text");
+        entrada.setAttribute("value", "Turquía");
+        entrada.setAttribute("id", "buscarLugar");
+        entrada.setAttribute("class", "prueba");
+
+        boton.setAttribute("id","boton5");
+        document.body.appendChild(entrada)
+
+        vectorSalida = [
+            { data:{
+                ID: 1004,
+                nombre: "Derin",
+                apellidos: "Toparlak",
+                altura: 193,
+                nacimiento: {
+                dia: 20,
+                mes: 7,
+                año: 1995,
+                lugar: "Turquía"
+                },
+                participacionesJJOO: [
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 1
+                }}
+        ]
+
+        expect(Plantilla.buscaLugar(vector)).toContain(Plantilla.imprimirPersonasBuscada(vectorSalida, 5));
+    });
+
+});
+
+describe("Plantilla.buscaAño", function(){
+    it("Tendría que buscar correctamente el año de participacion en los JJOO", function(){
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}]; 
+
+        const entrada = document.createElement("input");
+        const boton = document.createElement("button");
+
+        entrada.setAttribute("type", "number");
+        entrada.setAttribute("value", 1996);
+        entrada.setAttribute("id", "buscarAño");
+        entrada.setAttribute("class", "prueba");
+
+        boton.setAttribute("id","boton6");
+        document.body.appendChild(entrada)
+
+        vectorSalida = [
+            { data: {
+                ID: 1001,
+                nombre: "Paula",
+                apellidos: "Aguirre Rodriguez",
+                altura: 178,
+                nacimiento: {
+                dia: 19,
+                mes: 11,
+                año: 1978,
+                lugar: "Colombia"
+                },
+                participacionesJJOO: [
+                1996,
+                2000,
+                2004
+                ],
+                numPodiosConseguidos: 2
+                }}
+        ]
+
+        expect(Plantilla.buscaAño(vector)).toContain(Plantilla.imprimirPersonasBuscada(vectorSalida, 6));
+    });
+
+});
+
+describe("Plantilla.buscaPodios", function(){
+    it("Tendría que buscar correctamente el numero de podios conseguidos", function(){
+        vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}]; 
+
+        const entrada = document.createElement("input");
+        const boton = document.createElement("button");
+
+        entrada.setAttribute("type", "number");
+        entrada.setAttribute("value", 0);
+        entrada.setAttribute("id", "buscarPodios");
+        entrada.setAttribute("class", "prueba");
+
+        boton.setAttribute("id","boton7");
+        document.body.appendChild(entrada)
+
+        vectorSalida = [
+            { data:{
+                ID: 1002,
+                nombre: "Viktoriia",
+                apellidos: "Uvarova ",
+                altura: 182,
+                nacimiento: {
+                dia: 17,
+                mes: 11,
+                año: 1983,
+                lugar: "Ucrania"
+                },
+                participacionesJJOO: [
+                2004
+                ],
+                numPodiosConseguidos: 0
+                }}
+        ]
+
+        expect(Plantilla.buscaPodios(vector)).toContain(Plantilla.imprimirPersonasBuscada(vectorSalida, 7));
+    });
+
+});
+
+
+
 
 /*
 IMPORTANTE
