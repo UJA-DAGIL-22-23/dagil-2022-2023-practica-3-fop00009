@@ -195,6 +195,373 @@ describe("Plantilla.imprimeNombreOrdenado", function(){
     
 });
 
+describe("Plantilla.ordenarPorApellido", function(){
+    it("Tendría que ordenar correctamente el vector", function(){
+        let vector = [
+            { data: {
+            ID: 1000,
+            nombre: "Francisco",
+            apellidos: "Salazar Segovia",
+            altura: 190,
+            nacimiento: {
+            dia: 5,
+            mes: 9,
+            año: 1989,
+            lugar: "España"
+            },
+            participacionesJJOO: [
+            2012,
+            2016
+            ],
+            numPodiosConseguidos: 1
+            }},
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1002,
+            nombre: "Viktoriia",
+            apellidos: "Uvarova ",
+            altura: 182,
+            nacimiento: {
+            dia: 17,
+            mes: 11,
+            año: 1983,
+            lugar: "Ucrania"
+            },
+            participacionesJJOO: [
+            2004
+            ],
+            numPodiosConseguidos: 0
+            }},
+            { data:{
+            ID: 1003,
+            nombre: "Peter",
+            apellidos: "Holoda ",
+            altura: 196,
+            nacimiento: {
+            dia: 9,
+            mes: 1,
+            año: 1996,
+            lugar: "Hungría"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+            ID: 1004,
+            nombre: "Derin",
+            apellidos: "Toparlak",
+            altura: 193,
+            nacimiento: {
+            dia: 20,
+            mes: 7,
+            año: 1995,
+            lugar: "Turquía"
+            },
+            participacionesJJOO: [
+            2016,
+            2021
+            ],
+            numPodiosConseguidos: 1
+            }}];  
+            
+            let vectorEsperado = [
+                { data: {
+                ID: 1001,
+                nombre: "Paula",
+                apellidos: "Aguirre Rodriguez",
+                altura: 178,
+                nacimiento: {
+                dia: 19,
+                mes: 11,
+                año: 1978,
+                lugar: "Colombia"
+                },
+                participacionesJJOO: [
+                1996,
+                2000,
+                2004
+                ],
+                numPodiosConseguidos: 2
+                }},
+                { data:{
+                    ID: 1003,
+                    nombre: "Peter",
+                    apellidos: "Holoda ",
+                    altura: 196,
+                    nacimiento: {
+                    dia: 9,
+                    mes: 1,
+                    año: 1996,
+                    lugar: "Hungría"
+                    },
+                    participacionesJJOO: [
+                    2016,
+                    2021
+                    ],
+                    numPodiosConseguidos: 2
+                    }},
+                { data: {
+                    ID: 1000,
+                    nombre: "Francisco",
+                    apellidos: "Salazar Segovia",
+                    altura: 190,
+                    nacimiento: {
+                    dia: 5,
+                    mes: 9,
+                    año: 1989,
+                    lugar: "España"
+                    },
+                    participacionesJJOO: [
+                    2012,
+                    2016
+                    ],
+                    numPodiosConseguidos: 1
+                    }}
+                    ,{ data:{
+                        ID: 1004,
+                        nombre: "Derin",
+                        apellidos: "Toparlak",
+                        altura: 193,
+                        nacimiento: {
+                        dia: 20,
+                        mes: 7,
+                        año: 1995,
+                        lugar: "Turquía"
+                        },
+                        participacionesJJOO: [
+                        2016,
+                        2021
+                        ],
+                        numPodiosConseguidos: 1
+                        }},
+                        { data:{
+                            ID: 1002,
+                            nombre: "Viktoriia",
+                            apellidos: "Uvarova ",
+                            altura: 182,
+                            nacimiento: {
+                            dia: 17,
+                            mes: 11,
+                            año: 1983,
+                            lugar: "Ucrania"
+                            },
+                            participacionesJJOO: [
+                            2004
+                            ],
+                            numPodiosConseguidos: 0
+                            }}
+                    
+            ]
+            Plantilla.ordenarPorApellido(vector);
+            expect(vector).toEqual(vectorEsperado);
+
+    });
+    
+    it("Tendría que dejar el vector tal cual esta si ya esta ordenado.", function(){
+        let vector = [
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+                ID: 1003,
+                nombre: "Peter",
+                apellidos: "Holoda ",
+                altura: 196,
+                nacimiento: {
+                dia: 9,
+                mes: 1,
+                año: 1996,
+                lugar: "Hungría"
+                },
+                participacionesJJOO: [
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 2
+                }},
+            { data: {
+                ID: 1000,
+                nombre: "Francisco",
+                apellidos: "Salazar Segovia",
+                altura: 190,
+                nacimiento: {
+                dia: 5,
+                mes: 9,
+                año: 1989,
+                lugar: "España"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 1
+                }}
+                ,{ data:{
+                    ID: 1004,
+                    nombre: "Derin",
+                    apellidos: "Toparlak",
+                    altura: 193,
+                    nacimiento: {
+                    dia: 20,
+                    mes: 7,
+                    año: 1995,
+                    lugar: "Turquía"
+                    },
+                    participacionesJJOO: [
+                    2016,
+                    2021
+                    ],
+                    numPodiosConseguidos: 1
+                    }},
+                    { data:{
+                        ID: 1002,
+                        nombre: "Viktoriia",
+                        apellidos: "Uvarova ",
+                        altura: 182,
+                        nacimiento: {
+                        dia: 17,
+                        mes: 11,
+                        año: 1983,
+                        lugar: "Ucrania"
+                        },
+                        participacionesJJOO: [
+                        2004
+                        ],
+                        numPodiosConseguidos: 0
+                        }}
+                
+        ]
+
+        let vectorEsperado = [
+            { data: {
+            ID: 1001,
+            nombre: "Paula",
+            apellidos: "Aguirre Rodriguez",
+            altura: 178,
+            nacimiento: {
+            dia: 19,
+            mes: 11,
+            año: 1978,
+            lugar: "Colombia"
+            },
+            participacionesJJOO: [
+            1996,
+            2000,
+            2004
+            ],
+            numPodiosConseguidos: 2
+            }},
+            { data:{
+                ID: 1003,
+                nombre: "Peter",
+                apellidos: "Holoda ",
+                altura: 196,
+                nacimiento: {
+                dia: 9,
+                mes: 1,
+                año: 1996,
+                lugar: "Hungría"
+                },
+                participacionesJJOO: [
+                2016,
+                2021
+                ],
+                numPodiosConseguidos: 2
+                }},
+            { data: {
+                ID: 1000,
+                nombre: "Francisco",
+                apellidos: "Salazar Segovia",
+                altura: 190,
+                nacimiento: {
+                dia: 5,
+                mes: 9,
+                año: 1989,
+                lugar: "España"
+                },
+                participacionesJJOO: [
+                2012,
+                2016
+                ],
+                numPodiosConseguidos: 1
+                }}
+                ,{ data:{
+                    ID: 1004,
+                    nombre: "Derin",
+                    apellidos: "Toparlak",
+                    altura: 193,
+                    nacimiento: {
+                    dia: 20,
+                    mes: 7,
+                    año: 1995,
+                    lugar: "Turquía"
+                    },
+                    participacionesJJOO: [
+                    2016,
+                    2021
+                    ],
+                    numPodiosConseguidos: 1
+                    }},
+                    { data:{
+                        ID: 1002,
+                        nombre: "Viktoriia",
+                        apellidos: "Uvarova ",
+                        altura: 182,
+                        nacimiento: {
+                        dia: 17,
+                        mes: 11,
+                        año: 1983,
+                        lugar: "Ucrania"
+                        },
+                        participacionesJJOO: [
+                        2004
+                        ],
+                        numPodiosConseguidos: 0
+                        }}
+                
+        ]
+        Plantilla.ordenarPorApellido(vector)
+        expect(vector).toEqual(vectorEsperado);
+    });
+
+    
+});
+
 describe("Plantilla.cabeceraTablaConTodo", function(){
     it("Tendría que devolver las etiquetas HTML para la cabecera de la tabla de listar personas con todos sus datos.", function(){
         expect(Plantilla.cabeceraTablaConTodo()).toBe('<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Altura (cm)</th><th>Nacimiento</th><th>Participaciones en JJOO</th><th>Podios conseguidos</th></thead><tbody>');
@@ -1233,7 +1600,7 @@ describe("Plantilla.imprimirPersonasBuscada", function () {
         expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
        
         Plantilla.imprimirPersonasBuscada(vector,7);
-        tituloEsperado = "Personas que han conseguido más podios de los conseguidos";
+        tituloEsperado = "Personas que han conseguido más podios de los buscados";
         expect(elementoTitulo.innerHTML).toEqual(tituloEsperado);
     });
     it("Tendría que actualizar correctamente el titulo para modos incorrectos",function () {
