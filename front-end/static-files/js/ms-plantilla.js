@@ -209,113 +209,110 @@ Plantilla.buscarDiferentesCampos = function(){
 
 Plantilla.pantalllaBuscarCampos = function(){
     let mensaje = "";
-    mensaje+='<input type="text" id="buscarID" placeholder="Introduce un ID"><button id="boton1" onclick="Plantilla.buscaID(vDatos)">Buscar</button>'  
-    mensaje+='<input type="text" id="buscarApellidos" placeholder="Introduce unos apellidos"><button id="boton2" onclick="Plantilla.buscaApellidos(vDatos)">Buscar</button>'
-    mensaje+='<input type="number" id="buscarAltura" min = "0" placeholder="Altura maxima (cm)"><button id="boton3" onclick="Plantilla.buscaAltura(vDatos)">Buscar</button>'
-    mensaje+='<input type="date" id="buscarFecha" placeholder="Introduce una fecha"><button id="boton4" onclick="Plantilla.buscaFecha(vDatos)">Buscar</button>'
-    mensaje+='<input type="text" id="buscarLugar" placeholder="Introduce un lugar de nacimiento"><button id="boton5" onclick="Plantilla.buscaLugar(vDatos)">Buscar</button>'
-    mensaje+='<input type="number" id="buscarAño" min = "0" placeholder="Año de participación"><button id="boton6" onclick="Plantilla.buscaAño(vDatos)">Buscar</button>'
-    mensaje+='<input type="number" id="buscarPodios" min = "0" placeholder="Introduce un numero de podios"><button id="boton7" onclick="Plantilla.buscaPodios(vDatos)">Buscar</button>'
+    mensaje+='<input type="text" id="buscarID" placeholder="Introduce un ID"><button id="boton1" onclick="Plantilla.buscaDifParametros(vDatos,1)">Buscar</button>'  
+    mensaje+='<input type="text" id="buscarApellidos" placeholder="Introduce unos apellidos"><button id="boton2" onclick="Plantilla.buscaDifParametros(vDatos,2)">Buscar</button>'
+    mensaje+='<input type="number" id="buscarAltura" min = "0" placeholder="Altura maxima (cm)"><button id="boton3" onclick="Plantilla.buscaDifParametros(vDatos,3)">Buscar</button>'
+    mensaje+='<input type="date" id="buscarFecha" placeholder="Introduce una fecha"><button id="boton4" onclick="Plantilla.buscaDifParametros(vDatos,4)">Buscar</button>'
+    mensaje+='<input type="text" id="buscarLugar" placeholder="Introduce un lugar de nacimiento"><button id="boton5" onclick="Plantilla.buscaDifParametros(vDatos,5)">Buscar</button>'
+    mensaje+='<input type="number" id="buscarAño" min = "0" placeholder="Año de participación"><button id="boton6" onclick="Plantilla.buscaDifParametros(vDatos,6)">Buscar</button>'
+    mensaje+='<input type="number" id="buscarPodios" min = "0" placeholder="Introduce un numero de podios"><button id="boton7" onclick="Plantilla.buscaDifParametros(vDatos,7)">Buscar</button>'
     Frontend.Article.actualizar("Buscar persona por diferentes campos", mensaje);
     return mensaje;
 }
 
-Plantilla.buscaPodios = function (vector){
-    var podios = document.getElementById("buscarPodios").value;
-    let vectorSalida = [];
-    for(let i =0;i<vector.length;i++){
-        if(vector[i].data.numPodiosConseguidos >= podios){
-            vectorSalida.push(vector[i]) 
-        }
+Plantilla.buscaDifParametros = function (vector, parametro){
+    if(parametro == 1){
+        var id = document.getElementById("buscarID").value;
+        let vectorSalida = [];
+        for(let i =0;i<vector.length;i++){
+            // console.log("id introducida: " + id)
+            // console.log("id mirada: "+vector[i].data.ID)
+            if(vector[i].data.ID == id){
+                vectorSalida.push(vector[i]) 
+            }
     }
-    return this.imprimirPersonasBuscada(vectorSalida, 7);
-}
-
-Plantilla.buscaAño = function (vector){
-    var año = document.getElementById("buscarAño").value;
-    let vectorSalida = [];
-    for(let i =0;i<vector.length;i++){
-        for(let j = 0;j<vector[i].data.participacionesJJOO.length;j++){
-            if(vector[i].data.participacionesJJOO[j] == año){
+    return this.imprimirPersonasBuscada(vectorSalida, 1);
+    }
+    if(parametro==2){
+        var apellidos = document.getElementById("buscarApellidos").value.toUpperCase();
+        let vectorSalida = [];
+        for(let i =0;i<vector.length;i++){
+            if(vector[i].data.apellidos.toUpperCase() == apellidos){
+                vectorSalida.push(vector[i]) 
+            }
+        }
+        return this.imprimirPersonasBuscada(vectorSalida,2);
+    }
+    if(parametro == 3){
+        var altura = document.getElementById("buscarAltura").value;
+        let vectorSalida = [];
+        for(let i =0;i<vector.length;i++){
+            if(vector[i].data.altura <= altura){
+                vectorSalida.push(vector[i]) 
+            }
+        }
+        return this.imprimirPersonasBuscada(vectorSalida,3);
+    }
+    if(parametro == 4){
+        var fecha = new Date(document.getElementById("buscarFecha").value);
+        let dia,mes, anio;
+        let vectorSalida = [];
+        for(let i =0;i<vector.length;i++){
+            dia = vector[i].data.nacimiento.dia;
+            mes = vector[i].data.nacimiento.mes;
+            anio = vector[i].data.nacimiento.año;
+            var fecha2 = new Date(anio,mes,dia)
+            if(fecha2.getTime() > fecha.getTime()){
                 vectorSalida.push(vector[i]);
             }
         }
+        return this.imprimirPersonasBuscada(vectorSalida,4);
+    }
+    if(parametro == 5){
+        var lugar = document.getElementById("buscarLugar").value.toUpperCase();
+        let vectorSalida = [];
+        for(let i =0;i<vector.length;i++){
+            if(vector[i].data.nacimiento.lugar.toUpperCase() == lugar){
+                vectorSalida.push(vector[i]) 
+            }
+        }
+        return this.imprimirPersonasBuscada(vectorSalida,5);
+    }
+    if(parametro==6){
+         var año = document.getElementById("buscarAño").value;
+        let vectorSalida = [];
+        for(let i =0;i<vector.length;i++){
+            for(let j = 0;j<vector[i].data.participacionesJJOO.length;j++){
+                if(vector[i].data.participacionesJJOO[j] == año){
+                    vectorSalida.push(vector[i]);
+                }
+            }
     }
     return this.imprimirPersonasBuscada(vectorSalida, 6);
-}
-
-Plantilla.buscaLugar = function (vector){
-    var lugar = document.getElementById("buscarLugar").value.toUpperCase();
-    let vectorSalida = [];
-    for(let i =0;i<vector.length;i++){
-        if(vector[i].data.nacimiento.lugar.toUpperCase() == lugar){
-            vectorSalida.push(vector[i]) 
-        }
     }
-    return this.imprimirPersonasBuscada(vectorSalida,5);
-}
-
-Plantilla.buscaFecha = function (vector){
-    var fecha = new Date(document.getElementById("buscarFecha").value);
-    let dia,mes, anio;
-    let vectorSalida = [];
-    for(let i =0;i<vector.length;i++){
-        dia = vector[i].data.nacimiento.dia;
-        mes = vector[i].data.nacimiento.mes;
-        anio = vector[i].data.nacimiento.año;
-        var fecha2 = new Date(anio,mes,dia)
-        if(fecha2.getTime() > fecha.getTime()){
-            vectorSalida.push(vector[i]);
+    if(parametro==7){
+        var podios = document.getElementById("buscarPodios").value;
+        let vectorSalida = [];
+        for(let i =0;i<vector.length;i++){
+            if(vector[i].data.numPodiosConseguidos >= podios){
+                vectorSalida.push(vector[i]) 
+            }
         }
-    }
-    return this.imprimirPersonasBuscada(vectorSalida,4);
+        return this.imprimirPersonasBuscada(vectorSalida, 7);
+    }return this.imprimirPersonasBuscada(vectorSalida, 0);
 }
 
 
-Plantilla.buscaApellidos = function (vector){
-    var apellidos = document.getElementById("buscarApellidos").value.toUpperCase();
-    let vectorSalida = [];
-    for(let i =0;i<vector.length;i++){
-        if(vector[i].data.apellidos.toUpperCase() == apellidos){
-            vectorSalida.push(vector[i]) 
-        }
-    }
-    return this.imprimirPersonasBuscada(vectorSalida,2);
-}
-
-Plantilla.buscaAltura = function (vector){
-    var altura = document.getElementById("buscarAltura").value;
-    let vectorSalida = [];
-    for(let i =0;i<vector.length;i++){
-        if(vector[i].data.altura <= altura){
-            vectorSalida.push(vector[i]) 
-        }
-    }
-    return this.imprimirPersonasBuscada(vectorSalida,3);
-}
-
-Plantilla.buscaID=function(vector){
-    var id = document.getElementById("buscarID").value;
-    let vectorSalida = [];
-    for(let i =0;i<vector.length;i++){
-        // console.log("id introducida: " + id)
-        // console.log("id mirada: "+vector[i].data.ID)
-        if(vector[i].data.ID == id){
-            vectorSalida.push(vector[i]) 
-        }
-    }
-    return this.imprimirPersonasBuscada(vectorSalida, 1);
-}
 
 Plantilla.imprimirPersonasBuscada = function(vector, modo){
     let mensaje = "";
-    mensaje+='<input type="text" id="buscarID" placeholder="Introduce un ID"><button id="boton1" onclick="Plantilla.buscaID(vDatos)">Buscar</button>'  
-    mensaje+='<input type="text" id="buscarApellidos" placeholder="Introduce unos apellidos"><button id="boton2" onclick="Plantilla.buscaApellidos(vDatos)">Buscar</button>'
-    mensaje+='<input type="number" id="buscarAltura" min = "0" placeholder="Altura maxima (cm)"><button id="boton3" onclick="Plantilla.buscaAltura(vDatos)">Buscar</button>'
-    mensaje+='<input type="date" id="buscarFecha" placeholder="Introduce una fecha"><button id="boton4" onclick="Plantilla.buscaFecha(vDatos)">Buscar</button>'
-    mensaje+='<input type="text" id="buscarLugar" placeholder="Introduce un lugar de nacimiento"><button id="boton5" onclick="Plantilla.buscaLugar(vDatos)">Buscar</button>'
-    mensaje+='<input type="number" id="buscarAño" min = "0" placeholder="Año de participación"><button id="boton6" onclick="Plantilla.buscaAño(vDatos)">Buscar</button>'
-    mensaje+='<input type="number" id="buscarPodios" min = "0" placeholder="Introduce un numero de podios"><button id="boton7" onclick="Plantilla.buscaPodios(vDatos)">Buscar</button>'
+    mensaje+='<input type="text" id="buscarID" placeholder="Introduce un ID"><button id="boton1" onclick="Plantilla.buscaDifParametros(vDatos,1)">Buscar</button>'  
+    mensaje+='<input type="text" id="buscarApellidos" placeholder="Introduce unos apellidos"><button id="boton2" onclick="Plantilla.buscaDifParametros(vDatos,2)">Buscar</button>'
+    mensaje+='<input type="number" id="buscarAltura" min = "0" placeholder="Altura maxima (cm)"><button id="boton3" onclick="Plantilla.buscaDifParametros(vDatos,3)">Buscar</button>'
+    mensaje+='<input type="date" id="buscarFecha" placeholder="Introduce una fecha"><button id="boton4" onclick="Plantilla.buscaDifParametros(vDatos,4)">Buscar</button>'
+    mensaje+='<input type="text" id="buscarLugar" placeholder="Introduce un lugar de nacimiento"><button id="boton5" onclick="Plantilla.buscaDifParametros(vDatos,5)">Buscar</button>'
+    mensaje+='<input type="number" id="buscarAño" min = "0" placeholder="Año de participación"><button id="boton6" onclick="Plantilla.buscaDifParametros(vDatos,6)">Buscar</button>'
+    mensaje+='<input type="number" id="buscarPodios" min = "0" placeholder="Introduce un numero de podios"><button id="boton7" onclick="Plantilla.buscaDifParametros(vDatos,7)">Buscar</button>'
     if(vector.length == 0){
         mensaje+='<div class="error"><p>¡Error! No se ha encontrado lo que buscabas.</p> </div>'
     }else{
