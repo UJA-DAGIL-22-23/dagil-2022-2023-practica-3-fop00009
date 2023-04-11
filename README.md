@@ -186,6 +186,7 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
 ### Tercera HU completada
 ![hu 3 en done](https://user-images.githubusercontent.com/124682676/229759117-9d555be3-7f53-4aef-9e17-66e15267d958.png)
 
+## En este caso estan ordenados por apellidos
 ![Demostracion HU 3](https://user-images.githubusercontent.com/124682676/229759132-fa4eef9b-6dbf-4739-9c7d-849c40b254d4.png)
 
 # Segundo incremento
@@ -213,32 +214,25 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
 
 # Tercer incremento
 ### Captura del tablero trello al inicio del tercer incremento
-![Inicio incremento 3](https://user-images.githubusercontent.com/124682676/230999933-66ffc9e5-5661-4a31-b37b-e7b82250b64b.png)
+![image](https://user-images.githubusercontent.com/124682676/231296437-294eb6d4-731f-4d0b-a4ce-8e88c4c201ca.png)
 
 ### Séptima HU completada
-![HU 7 done](https://user-images.githubusercontent.com/124682676/231000001-7bfccbdf-de72-46c3-891d-2fd23e277700.png)
+![image](https://user-images.githubusercontent.com/124682676/231296475-0fbe8a36-c947-476f-9d90-086b7f76aec8.png)
 
 ![demostracion HU 7  (1)](https://user-images.githubusercontent.com/124682676/231000015-fccf7715-ff1d-4586-a1f1-f0427fff8277.png)
 ![demostracion HU 7  (2)](https://user-images.githubusercontent.com/124682676/231000076-3c84f0d8-562f-4ca5-b9d9-5411bbef66fa.png)
 ![demostracion HU 7  (3)](https://user-images.githubusercontent.com/124682676/231000058-567baaf8-afe1-444e-950a-10d3e10c62e0.png)
 
 ### Octava HU completada
-![HU 8 done](https://user-images.githubusercontent.com/124682676/231000804-485d6640-0789-4084-9c89-f8d4cb733760.png)
+![image](https://user-images.githubusercontent.com/124682676/231296595-6b96ba45-26eb-40cd-9b39-79b4218ec7c5.png)
 
 ![image](https://user-images.githubusercontent.com/124682676/231000899-dad894c5-a857-40ea-93e0-8a208f9e1651.png)
 ![demostracion HU 8](https://user-images.githubusercontent.com/124682676/231000147-44adb64c-4cd4-487e-887a-7ae746a6d9b1.png)
 
-### Tablero trello al final del incremento
-![image](https://user-images.githubusercontent.com/124682676/231001508-9e657c75-da5b-46df-97bf-69d3c9cd712f.png)
-
-# Cuarto incremento
-### Captura del tablero trello al inicio del cuarto incremento
-![Pantallazo trello al inicio del incremento](https://user-images.githubusercontent.com/124682676/231294798-16258450-43f2-4066-8c8d-7eba9e5ca48a.png)
-
 ### Novena HU completada
 ![Pantallazo trello al final del incremento](https://user-images.githubusercontent.com/124682676/231294857-2feb592b-529b-4ec7-9f33-e9f96fc3d28a.png)
 
-### demostración novena HU
+### Demostración novena HU
 #### Búsqueda por ID
 ![Demostracion HU 9 (1)](https://user-images.githubusercontent.com/124682676/231294951-147f67e6-b8bf-4c48-85e8-8d9c76a8ccb7.png)
 ![Demostracion HU 9 (2)](https://user-images.githubusercontent.com/124682676/231294965-a2c5e418-1a6c-40ff-8731-2ea313a7cb46.png)
