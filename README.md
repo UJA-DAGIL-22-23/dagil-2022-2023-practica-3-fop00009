@@ -261,7 +261,7 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
 ![Demostracion HU 9 (13)](https://user-images.githubusercontent.com/124682676/231295440-14004c9a-32a5-42f5-82c0-d09ab0408be3.png)
 ![image](https://user-images.githubusercontent.com/124682676/231295747-63c48884-d1e5-445d-a547-cb3e3547103f.png)
 
-### Captura del tablero trello al final del cuarto incremento
+### Captura del tablero trello al final del tercer incremento
 ![Pantallazo trello al final del incremento](https://user-images.githubusercontent.com/124682676/231295495-d1100d88-69b3-4686-ab6e-0e9360d63ed8.png)
 
 
