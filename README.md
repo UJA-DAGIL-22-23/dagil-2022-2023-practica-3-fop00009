@@ -230,3 +230,46 @@ DOCUMENTOS CREADOS EN LA COLECCIÓN EN FORMATO JSON:
 
 ### Tablero trello al final del incremento
 ![image](https://user-images.githubusercontent.com/124682676/231001508-9e657c75-da5b-46df-97bf-69d3c9cd712f.png)
+
+# Cuarto incremento
+### Captura del tablero trello al inicio del cuarto incremento
+![Pantallazo trello al inicio del incremento](https://user-images.githubusercontent.com/124682676/231294798-16258450-43f2-4066-8c8d-7eba9e5ca48a.png)
+
+### Novena HU completada
+![Pantallazo trello al final del incremento](https://user-images.githubusercontent.com/124682676/231294857-2feb592b-529b-4ec7-9f33-e9f96fc3d28a.png)
+
+### demostración novena HU
+#### Búsqueda por ID
+![Demostracion HU 9 (1)](https://user-images.githubusercontent.com/124682676/231294951-147f67e6-b8bf-4c48-85e8-8d9c76a8ccb7.png)
+![Demostracion HU 9 (2)](https://user-images.githubusercontent.com/124682676/231294965-a2c5e418-1a6c-40ff-8731-2ea313a7cb46.png)
+
+#### Búsqueda por Apellidos
+![Demostracion HU 9 (3)](https://user-images.githubusercontent.com/124682676/231295019-fe268106-2b14-434a-b5c7-e2d62d14ce7c.png)
+![Demostracion HU 9 (4)](https://user-images.githubusercontent.com/124682676/231295035-593b6527-edac-4f1a-93c0-64b82a0a76a0.png)
+
+#### Búsqueda por altura 
+![Demostracion HU 9 (5)](https://user-images.githubusercontent.com/124682676/231295118-7a58c0d3-6205-4295-95be-98fb4ae87b51.png)
+![Demostracion HU 9 (6)](https://user-images.githubusercontent.com/124682676/231295133-b2e313f2-8e04-4804-b227-a80490f9c9df.png)
+
+#### Búsqueda por fecha de nacimiento
+![Demostracion HU 9 (7)](https://user-images.githubusercontent.com/124682676/231295199-b7f8a867-0e67-4008-bf46-6b288f665661.png)
+![Demostracion HU 9 (8)](https://user-images.githubusercontent.com/124682676/231295214-e56722b8-3db5-484b-8120-1bacadf5e4e1.png)
+
+#### Búsqueda por lugar de nacimiento
+![Demostracion HU 9 (9)](https://user-images.githubusercontent.com/124682676/231295254-10b56c4e-86fb-485d-8ebd-db001cfa29f0.png)
+![Demostracion HU 9 (10)](https://user-images.githubusercontent.com/124682676/231295281-900f6d88-1218-4401-8efc-efe7c4664e5a.png)
+
+#### Búsqueda por año de participación en JJOO
+![Demostracion HU 9 (11)](https://user-images.githubusercontent.com/124682676/231295359-cf72fd3e-0fff-4a4f-a2ef-a583d3094c4a.png)
+![Demostracion HU 9 (12)](https://user-images.githubusercontent.com/124682676/231295377-8d270ee5-2103-4f70-8a83-176067c6b4c9.png)
+
+#### Búsqueda por número de podios conseguidos
+![Demostracion HU 9 (13)](https://user-images.githubusercontent.com/124682676/231295440-14004c9a-32a5-42f5-82c0-d09ab0408be3.png)
+![image](https://user-images.githubusercontent.com/124682676/231295747-63c48884-d1e5-445d-a547-cb3e3547103f.png)
+
+### Captura del tablero trello al final del cuarto incremento
+![Pantallazo trello al final del incremento](https://user-images.githubusercontent.com/124682676/231295495-d1100d88-69b3-4686-ab6e-0e9360d63ed8.png)
+
+
+
+
